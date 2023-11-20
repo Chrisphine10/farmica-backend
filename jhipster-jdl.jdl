@@ -1,0 +1,102 @@
+entity PackingZoneDetail {
+  pdnDate LocalDate required
+  packageDate LocalDate  required
+  weightReceived Double required 
+  weightBalance Double required
+  numberOfCTNs Integer required 
+  startCTNNumber Integer  
+  endCTNNumber Integer 
+  rework Boolean
+  reworkId Long
+  status CurrentZone
+}
+
+entity Comment {
+  comment TextBlob required
+  createdAt ZonedDateTime required
+}
+
+entity ReworkComment {
+  comment TextBlob required
+  createdAt ZonedDateTime required
+}
+
+entity ReworkDetail {
+  pdnDate LocalDate required
+  reworkDate LocalDate  required
+  numberOfCTNs Integer required
+  startCTNNumber Integer 
+  endCTNNumber Integer 
+  status ReworkStatus required
+}
+
+
+entity LotDetail{
+  lotNo Integer	unique required
+}
+
+entity VariableData {
+  accumulation Integer
+}
+
+entity BatchDetail {
+  batchNo String required 
+  createdAt ZonedDateTime required
+  drier Integer
+}
+
+
+entity Region {
+	name String required
+  code String required
+}
+
+
+entity Style {
+  name String required
+  code String required
+}
+
+enum Grade {
+	PREMIUM, STANDARD
+}
+
+enum CurrentZone {
+	PACKING, REWORK, WAREHOUSE, SALES
+}
+
+enum ReworkStatus {
+	PENDING, COMPLETE
+} 
+
+relationship ManyToOne {
+	 BatchDetail {region(id) required} to Region 
+	 LotDetail {batchDetail(id) required} to BatchDetail
+    PackingZoneDetail {lotDetail(id) required} to LotDetail
+    ReworkDetail {lotDetail(id) required} to LotDetail
+    PackingZoneDetail { user(login) required } to User	with builtInEntity 
+    ReworkDetail { user(login) required } to User with builtInEntity
+    Region { user(login) required } to User with builtInEntity
+    Style { user(login) required } to User with builtInEntity
+    LotDetail { user(login) required } to User with builtInEntity
+    BatchDetail { user(login) required } to User with builtInEntity   
+    Comment { user(login) required } to User with builtInEntity
+    Comment { packingZoneDetail(id) required } to PackingZoneDetail
+    ReworkComment { user(login) required } to User with builtInEntity
+    ReworkComment { reworkDetail(id) required } to ReworkDetail
+}
+
+relationship OneToOne {
+	  PackingZoneDetail {style(id) required} to Style	{packingZoneDetail(id) required }
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination
+
+
+
+
+
+
+
