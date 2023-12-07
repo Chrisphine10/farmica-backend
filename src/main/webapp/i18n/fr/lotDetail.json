@@ -1,0 +1,26 @@
+{
+  "farmicaApp": {
+    "lotDetail": {
+      "home": {
+        "title": "LotDetails",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Lot Detail",
+        "createOrEditLabel": "Créer ou éditer un Lot Detail",
+        "notFound": "Aucun Lot Detail trouvé"
+      },
+      "created": "Un nouveau Lot Detail a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Lot Detail avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Lot Detail avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Lot Detail {{ id }} ?"
+      },
+      "detail": {
+        "title": "Lot Detail"
+      },
+      "id": "ID",
+      "lotNo": "Lot No",
+      "batchDetail": "Batch Detail",
+      "user": "User"
+    }
+  }
+}

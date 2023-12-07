@@ -1,0 +1,30 @@
+{
+  "farmicaApp": {
+    "styleReport": {
+      "home": {
+        "title": "StyleReports",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Style Report",
+        "createOrEditLabel": "Créer ou éditer un Style Report",
+        "notFound": "Aucun Style Report trouvé"
+      },
+      "created": "Un nouveau Style Report a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Style Report avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Style Report avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Style Report {{ id }} ?"
+      },
+      "detail": {
+        "title": "Style Report"
+      },
+      "id": "ID",
+      "createdAt": "Created At",
+      "totalStyleInWarehouse": "Total Style In Warehouse",
+      "totalStyleInSales": "Total Style In Sales",
+      "totalStyleInRework": "Total Style In Rework",
+      "totalStyleInPacking": "Total Style In Packing",
+      "totalStyle": "Total Style",
+      "style": "Style"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "farmicaApp": {
+    "variableData": {
+      "home": {
+        "title": "VariableData",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Variable Data बनाएँ",
+        "createOrEditLabel": "Variable Data बनाएँ या संपादित करें",
+        "notFound": "No Variable Data found"
+      },
+      "created": "एक नया Variable Data [identifier: {{ param }}] तैयार है",
+      "updated": "एक Variable Data [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Variable Data [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Variable Data [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Variable Data"
+      },
+      "id": "ID",
+      "accumulation": "Accumulation",
+      "aiAccessCode": "Ai Access Code"
+    }
+  }
+}

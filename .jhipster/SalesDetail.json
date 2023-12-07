@@ -1,0 +1,76 @@
+{
+  "applications": "*",
+  "changelogDate": "20231120094934",
+  "dto": "mapstruct",
+  "entityTableName": "sales_detail",
+  "fields": [
+    {
+      "fieldName": "uicode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "salesDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numberOfCTNs",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "receivedCTNs",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "startCTNNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "endCTNNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "name": "SalesDetail",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "warehouseDetail",
+      "relationshipName": "warehouseDetail",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "lotDetail",
+      "relationshipName": "lotDetail",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "style",
+      "relationshipName": "style",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

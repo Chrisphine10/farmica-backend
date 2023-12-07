@@ -1,0 +1,27 @@
+{
+  "farmicaApp": {
+    "reworkComment": {
+      "home": {
+        "title": "ReworkComments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Rework Comment बनाएँ",
+        "createOrEditLabel": "Rework Comment बनाएँ या संपादित करें",
+        "notFound": "No Rework Comments found"
+      },
+      "created": "एक नया Rework Comment [identifier: {{ param }}] तैयार है",
+      "updated": "एक Rework Comment [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Rework Comment [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Rework Comment [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Rework Comment"
+      },
+      "id": "ID",
+      "comment": "Comment",
+      "createdAt": "Created At",
+      "user": "User",
+      "reworkDetail": "Rework Detail"
+    }
+  }
+}

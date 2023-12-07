@@ -1,0 +1,20 @@
+{
+  "applications": "*",
+  "changelogDate": "20231120095434",
+  "dto": "mapstruct",
+  "entityTableName": "variable_data",
+  "fields": [
+    {
+      "fieldName": "accumulation",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "aiAccessCode",
+      "fieldType": "String"
+    }
+  ],
+  "name": "VariableData",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

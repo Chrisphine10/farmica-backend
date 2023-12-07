@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20231120095134",
+  "dto": "mapstruct",
+  "entityTableName": "farmica_report",
+  "fields": [
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalItemsInWarehouse",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalItemsInSales",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalItemsInRework",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalItemsInPacking",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalItems",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "FarmicaReport",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

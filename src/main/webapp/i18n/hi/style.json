@@ -1,0 +1,27 @@
+{
+  "farmicaApp": {
+    "style": {
+      "home": {
+        "title": "Styles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Style बनाएँ",
+        "createOrEditLabel": "Style बनाएँ या संपादित करें",
+        "notFound": "No Styles found"
+      },
+      "created": "एक नया Style [identifier: {{ param }}] तैयार है",
+      "updated": "एक Style [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Style [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Style [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Style"
+      },
+      "id": "ID",
+      "name": "Name",
+      "grade": "Grade",
+      "code": "Code",
+      "user": "User"
+    }
+  }
+}

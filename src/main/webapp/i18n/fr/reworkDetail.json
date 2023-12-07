@@ -1,0 +1,34 @@
+{
+  "farmicaApp": {
+    "reworkDetail": {
+      "home": {
+        "title": "ReworkDetails",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Rework Detail",
+        "createOrEditLabel": "Créer ou éditer un Rework Detail",
+        "notFound": "Aucun Rework Detail trouvé"
+      },
+      "created": "Un nouveau Rework Detail a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Rework Detail avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Rework Detail avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Rework Detail {{ id }} ?"
+      },
+      "detail": {
+        "title": "Rework Detail"
+      },
+      "id": "ID",
+      "uicode": "Uicode",
+      "pdnDate": "Pdn Date",
+      "reworkDate": "Rework Date",
+      "numberOfCTNs": "Number Of CT Ns",
+      "startCTNNumber": "Start CTN Number",
+      "endCTNNumber": "End CTN Number",
+      "status": "Status",
+      "createdAt": "Created At",
+      "warehouseDetail": "Warehouse Detail",
+      "lotDetail": "Lot Detail",
+      "user": "User"
+    }
+  }
+}

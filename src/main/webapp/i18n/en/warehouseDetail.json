@@ -1,0 +1,34 @@
+{
+  "farmicaApp": {
+    "warehouseDetail": {
+      "home": {
+        "title": "Warehouse Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Warehouse Detail",
+        "createOrEditLabel": "Create or edit a Warehouse Detail",
+        "notFound": "No Warehouse Details found"
+      },
+      "created": "A new Warehouse Detail is created with identifier {{ param }}",
+      "updated": "A Warehouse Detail is updated with identifier {{ param }}",
+      "deleted": "A Warehouse Detail is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Warehouse Detail {{ id }}?"
+      },
+      "detail": {
+        "title": "Warehouse Detail"
+      },
+      "id": "ID",
+      "uicode": "Uicode",
+      "warehouseDate": "Warehouse Date",
+      "numberOfCTNs": "Number Of CT Ns",
+      "receivedCTNs": "Received CT Ns",
+      "startCTNNumber": "Start CTN Number",
+      "endCTNNumber": "End CTN Number",
+      "createdAt": "Created At",
+      "packingZoneDetail": "Packing Zone Detail",
+      "lotDetail": "Lot Detail",
+      "style": "Style",
+      "user": "User"
+    }
+  }
+}

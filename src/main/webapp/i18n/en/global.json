@@ -7,7 +7,20 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
-        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
+        "packingZoneDetail": "Packing Zone Detail",
+        "comment": "Comment",
+        "reworkComment": "Rework Comment",
+        "reworkDetail": "Rework Detail",
+        "lotDetail": "Lot Detail",
+        "variableData": "Variable Data",
+        "batchDetail": "Batch Detail",
+        "region": "Region",
+        "style": "Style",
+        "salesDetail": "Sales Detail",
+        "warehouseDetail": "Warehouse Detail",
+        "farmicaReport": "Farmica Report",
+        "styleReport": "Style Report"
       },
       "account": {
         "main": "Account",

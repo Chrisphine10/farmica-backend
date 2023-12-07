@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity PackingZoneDetail.
+    -->
+    <changeSet id="20231120094934-1" author="jhipster">
+        <createTable tableName="packing_zone_detail">
+            <column name="id" type="bigint" autoIncrement="true" startWith="1500">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="uicode" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pdn_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="package_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="weight_received" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="weight_balance" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="number_of_ct_ns" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="received_ct_ns" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="start_ctn_number" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="end_ctn_number" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="number_of_ct_ns_reworked" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="number_of_ct_ns_sold" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="number_of_ct_ns_packed" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="number_of_ct_ns_in_warehouse" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_at" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="lot_detail_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="style_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="packing_zone_detail" columnName="created_at" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20231120094934-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/packing_zone_detail.csv"
+                  separator=";"
+                  tableName="packing_zone_detail"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="uicode" type="string"/>
+            <column name="pdn_date" type="date"/>
+            <column name="package_date" type="date"/>
+            <column name="weight_received" type="numeric"/>
+            <column name="weight_balance" type="numeric"/>
+            <column name="number_of_ct_ns" type="numeric"/>
+            <column name="received_ct_ns" type="numeric"/>
+            <column name="start_ctn_number" type="numeric"/>
+            <column name="end_ctn_number" type="numeric"/>
+            <column name="number_of_ct_ns_reworked" type="numeric"/>
+            <column name="number_of_ct_ns_sold" type="numeric"/>
+            <column name="number_of_ct_ns_packed" type="numeric"/>
+            <column name="number_of_ct_ns_in_warehouse" type="numeric"/>
+            <column name="created_at" type="date"/>
+            <column name="lot_detail_id" type="numeric"/>
+            <column name="style_id" type="numeric"/>
+            <column name="user_id" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

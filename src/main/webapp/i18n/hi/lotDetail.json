@@ -1,0 +1,26 @@
+{
+  "farmicaApp": {
+    "lotDetail": {
+      "home": {
+        "title": "LotDetails",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Lot Detail बनाएँ",
+        "createOrEditLabel": "Lot Detail बनाएँ या संपादित करें",
+        "notFound": "No Lot Details found"
+      },
+      "created": "एक नया Lot Detail [identifier: {{ param }}] तैयार है",
+      "updated": "एक Lot Detail [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Lot Detail [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Lot Detail [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Lot Detail"
+      },
+      "id": "ID",
+      "lotNo": "Lot No",
+      "batchDetail": "Batch Detail",
+      "user": "User"
+    }
+  }
+}

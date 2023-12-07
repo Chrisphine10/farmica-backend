@@ -1,0 +1,34 @@
+{
+  "farmicaApp": {
+    "salesDetail": {
+      "home": {
+        "title": "SalesDetails",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Sales Detail बनाएँ",
+        "createOrEditLabel": "Sales Detail बनाएँ या संपादित करें",
+        "notFound": "No Sales Details found"
+      },
+      "created": "एक नया Sales Detail [identifier: {{ param }}] तैयार है",
+      "updated": "एक Sales Detail [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Sales Detail [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Sales Detail [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Sales Detail"
+      },
+      "id": "ID",
+      "uicode": "Uicode",
+      "salesDate": "Sales Date",
+      "numberOfCTNs": "Number Of CT Ns",
+      "receivedCTNs": "Received CT Ns",
+      "startCTNNumber": "Start CTN Number",
+      "endCTNNumber": "End CTN Number",
+      "createdAt": "Created At",
+      "warehouseDetail": "Warehouse Detail",
+      "lotDetail": "Lot Detail",
+      "style": "Style",
+      "user": "User"
+    }
+  }
+}

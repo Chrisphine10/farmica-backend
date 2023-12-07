@@ -1,0 +1,99 @@
+{
+  "applications": "*",
+  "changelogDate": "20231120094934",
+  "dto": "mapstruct",
+  "entityTableName": "packing_zone_detail",
+  "fields": [
+    {
+      "fieldName": "uicode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pdnDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "packageDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "weightReceived",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "weightBalance",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numberOfCTNs",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "receivedCTNs",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "startCTNNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "endCTNNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberOfCTNsReworked",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberOfCTNsSold",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberOfCTNsPacked",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberOfCTNsInWarehouse",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "name": "PackingZoneDetail",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "lotDetail",
+      "relationshipName": "lotDetail",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "style",
+      "relationshipName": "style",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

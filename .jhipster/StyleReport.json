@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "changelogDate": "20231120094934",
+  "dto": "mapstruct",
+  "entityTableName": "style_report",
+  "fields": [
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalStyleInWarehouse",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalStyleInSales",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalStyleInRework",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalStyleInPacking",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalStyle",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "StyleReport",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "style",
+      "relationshipName": "style",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,76 @@
+{
+  "applications": "*",
+  "changelogDate": "20231120095234",
+  "dto": "mapstruct",
+  "entityTableName": "rework_detail",
+  "fields": [
+    {
+      "fieldName": "uicode",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "pdnDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reworkDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numberOfCTNs",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "startCTNNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "endCTNNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ReworkStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PENDING,COMPLETE"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "name": "ReworkDetail",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "warehouseDetail",
+      "relationshipName": "warehouseDetail",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "lotDetail",
+      "relationshipName": "lotDetail",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,29 @@
+{
+  "farmicaApp": {
+    "farmicaReport": {
+      "home": {
+        "title": "FarmicaReports",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Farmica Report",
+        "createOrEditLabel": "Créer ou éditer un Farmica Report",
+        "notFound": "Aucun Farmica Report trouvé"
+      },
+      "created": "Un nouveau Farmica Report a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Farmica Report avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Farmica Report avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Farmica Report {{ id }} ?"
+      },
+      "detail": {
+        "title": "Farmica Report"
+      },
+      "id": "ID",
+      "createdAt": "Created At",
+      "totalItemsInWarehouse": "Total Items In Warehouse",
+      "totalItemsInSales": "Total Items In Sales",
+      "totalItemsInRework": "Total Items In Rework",
+      "totalItemsInPacking": "Total Items In Packing",
+      "totalItems": "Total Items"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "farmicaApp": {
+    "Grade": {
+      "null": "",
+      "PREMIUM": "PREMIUM",
+      "STANDARD": "STANDARD"
+    }
+  }
+}

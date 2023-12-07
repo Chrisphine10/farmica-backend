@@ -38,6 +38,19 @@ public class CacheConfiguration {
         return cm -> {
             createCache(cm, com.bhachu.farmica.repository.UserRepository.USERS_BY_LOGIN_CACHE);
             createCache(cm, com.bhachu.farmica.repository.UserRepository.USERS_BY_EMAIL_CACHE);
+            createCache(cm, com.bhachu.farmica.domain.PackingZoneDetail.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.Comment.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.ReworkComment.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.ReworkDetail.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.LotDetail.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.VariableData.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.BatchDetail.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.Region.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.Style.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.SalesDetail.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.WarehouseDetail.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.FarmicaReport.class.getName());
+            createCache(cm, com.bhachu.farmica.domain.StyleReport.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

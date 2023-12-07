@@ -1,0 +1,38 @@
+package com.bhachu.farmica.service.mapper;
+
+import com.bhachu.farmica.domain.LotDetail;
+import com.bhachu.farmica.domain.ReworkDetail;
+import com.bhachu.farmica.domain.User;
+import com.bhachu.farmica.domain.WarehouseDetail;
+import com.bhachu.farmica.service.dto.LotDetailDTO;
+import com.bhachu.farmica.service.dto.ReworkDetailDTO;
+import com.bhachu.farmica.service.dto.UserDTO;
+import com.bhachu.farmica.service.dto.WarehouseDetailDTO;
+import org.mapstruct.*;
+
+/**
+ * Mapper for the entity {@link ReworkDetail} and its DTO {@link ReworkDetailDTO}.
+ */
+@Mapper(componentModel = "spring")
+public interface ReworkDetailMapper extends EntityMapper<ReworkDetailDTO, ReworkDetail> {
+    @Mapping(target = "warehouseDetail", source = "warehouseDetail", qualifiedByName = "warehouseDetailId")
+    @Mapping(target = "lotDetail", source = "lotDetail", qualifiedByName = "lotDetailId")
+    @Mapping(target = "user", source = "user", qualifiedByName = "userLogin")
+    ReworkDetailDTO toDto(ReworkDetail s);
+
+    @Named("warehouseDetailId")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    WarehouseDetailDTO toDtoWarehouseDetailId(WarehouseDetail warehouseDetail);
+
+    @Named("lotDetailId")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    LotDetailDTO toDtoLotDetailId(LotDetail lotDetail);
+
+    @Named("userLogin")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "login", source = "login")
+    UserDTO toDtoUserLogin(User user);
+}

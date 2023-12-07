@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20231120095534",
+  "dto": "mapstruct",
+  "entityTableName": "batch_detail",
+  "fields": [
+    {
+      "fieldName": "batchNo",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique", "required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "drier",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "BatchDetail",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "region",
+      "relationshipName": "region",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

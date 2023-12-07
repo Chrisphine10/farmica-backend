@@ -1,0 +1,11 @@
+{
+  "farmicaApp": {
+    "CurrentZone": {
+      "null": "",
+      "PACKING": "PACKING",
+      "REWORK": "REWORK",
+      "WAREHOUSE": "WAREHOUSE",
+      "SALES": "SALES"
+    }
+  }
+}

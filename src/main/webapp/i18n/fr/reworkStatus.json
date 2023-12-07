@@ -1,0 +1,9 @@
+{
+  "farmicaApp": {
+    "ReworkStatus": {
+      "null": "",
+      "PENDING": "PENDING",
+      "COMPLETE": "COMPLETE"
+    }
+  }
+}

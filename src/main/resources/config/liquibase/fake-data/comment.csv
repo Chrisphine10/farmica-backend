@@ -1,0 +1,11 @@
+id;comment;status;zone_id;created_at;user_id
+1;../fake-data/blob/hipster.txt;REWORK;23824;2023-11-20T03:21:34;1
+2;../fake-data/blob/hipster.txt;PACKING;27417;2023-11-19T13:33:09;2
+3;../fake-data/blob/hipster.txt;PACKING;1013;2023-11-20T04:09:40;1
+4;../fake-data/blob/hipster.txt;WAREHOUSE;19470;2023-11-19T20:04:20;1
+5;../fake-data/blob/hipster.txt;SALES;3912;2023-11-20T03:45:47;2
+6;../fake-data/blob/hipster.txt;SALES;22694;2023-11-19T21:45:51;2
+7;../fake-data/blob/hipster.txt;REWORK;9800;2023-11-20T08:05:57;1
+8;../fake-data/blob/hipster.txt;WAREHOUSE;30009;2023-11-19T19:30:54;1
+9;../fake-data/blob/hipster.txt;PACKING;15916;2023-11-20T03:24:46;1
+10;../fake-data/blob/hipster.txt;REWORK;24233;2023-11-19T20:52:00;2

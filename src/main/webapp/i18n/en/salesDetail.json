@@ -1,0 +1,34 @@
+{
+  "farmicaApp": {
+    "salesDetail": {
+      "home": {
+        "title": "Sales Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Sales Detail",
+        "createOrEditLabel": "Create or edit a Sales Detail",
+        "notFound": "No Sales Details found"
+      },
+      "created": "A new Sales Detail is created with identifier {{ param }}",
+      "updated": "A Sales Detail is updated with identifier {{ param }}",
+      "deleted": "A Sales Detail is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sales Detail {{ id }}?"
+      },
+      "detail": {
+        "title": "Sales Detail"
+      },
+      "id": "ID",
+      "uicode": "Uicode",
+      "salesDate": "Sales Date",
+      "numberOfCTNs": "Number Of CT Ns",
+      "receivedCTNs": "Received CT Ns",
+      "startCTNNumber": "Start CTN Number",
+      "endCTNNumber": "End CTN Number",
+      "createdAt": "Created At",
+      "warehouseDetail": "Warehouse Detail",
+      "lotDetail": "Lot Detail",
+      "style": "Style",
+      "user": "User"
+    }
+  }
+}

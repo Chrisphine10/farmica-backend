@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20231120095334",
+  "dto": "mapstruct",
+  "entityTableName": "lot_detail",
+  "fields": [
+    {
+      "fieldName": "lotNo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["unique", "required"]
+    }
+  ],
+  "name": "LotDetail",
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "batchDetail",
+      "relationshipName": "batchDetail",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

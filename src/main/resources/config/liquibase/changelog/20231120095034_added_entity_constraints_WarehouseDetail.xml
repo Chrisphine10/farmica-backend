@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity WarehouseDetail.
+    -->
+    <changeSet id="20231120095034-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="packing_zone_detail_id"
+                                 baseTableName="warehouse_detail"
+                                 constraintName="fk_warehouse_detail__packing_zone_detail_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="packing_zone_detail"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="lot_detail_id"
+                                 baseTableName="warehouse_detail"
+                                 constraintName="fk_warehouse_detail__lot_detail_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="lot_detail"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="style_id"
+                                 baseTableName="warehouse_detail"
+                                 constraintName="fk_warehouse_detail__style_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="style"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="warehouse_detail"
+                                 constraintName="fk_warehouse_detail__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"
+                                 />
+    </changeSet>
+</databaseChangeLog>

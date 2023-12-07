@@ -1,0 +1,29 @@
+{
+  "farmicaApp": {
+    "farmicaReport": {
+      "home": {
+        "title": "FarmicaReports",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Farmica Report बनाएँ",
+        "createOrEditLabel": "Farmica Report बनाएँ या संपादित करें",
+        "notFound": "No Farmica Reports found"
+      },
+      "created": "एक नया Farmica Report [identifier: {{ param }}] तैयार है",
+      "updated": "एक Farmica Report [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Farmica Report [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Farmica Report [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Farmica Report"
+      },
+      "id": "ID",
+      "createdAt": "Created At",
+      "totalItemsInWarehouse": "Total Items In Warehouse",
+      "totalItemsInSales": "Total Items In Sales",
+      "totalItemsInRework": "Total Items In Rework",
+      "totalItemsInPacking": "Total Items In Packing",
+      "totalItems": "Total Items"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "farmicaApp": {
+    "styleReport": {
+      "home": {
+        "title": "StyleReports",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Style Report बनाएँ",
+        "createOrEditLabel": "Style Report बनाएँ या संपादित करें",
+        "notFound": "No Style Reports found"
+      },
+      "created": "एक नया Style Report [identifier: {{ param }}] तैयार है",
+      "updated": "एक Style Report [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Style Report [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Style Report [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Style Report"
+      },
+      "id": "ID",
+      "createdAt": "Created At",
+      "totalStyleInWarehouse": "Total Style In Warehouse",
+      "totalStyleInSales": "Total Style In Sales",
+      "totalStyleInRework": "Total Style In Rework",
+      "totalStyleInPacking": "Total Style In Packing",
+      "totalStyle": "Total Style",
+      "style": "Style"
+    }
+  }
+}

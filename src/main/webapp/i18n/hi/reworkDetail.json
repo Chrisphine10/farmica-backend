@@ -1,0 +1,34 @@
+{
+  "farmicaApp": {
+    "reworkDetail": {
+      "home": {
+        "title": "ReworkDetails",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Rework Detail बनाएँ",
+        "createOrEditLabel": "Rework Detail बनाएँ या संपादित करें",
+        "notFound": "No Rework Details found"
+      },
+      "created": "एक नया Rework Detail [identifier: {{ param }}] तैयार है",
+      "updated": "एक Rework Detail [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Rework Detail [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Rework Detail [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Rework Detail"
+      },
+      "id": "ID",
+      "uicode": "Uicode",
+      "pdnDate": "Pdn Date",
+      "reworkDate": "Rework Date",
+      "numberOfCTNs": "Number Of CT Ns",
+      "startCTNNumber": "Start CTN Number",
+      "endCTNNumber": "End CTN Number",
+      "status": "Status",
+      "createdAt": "Created At",
+      "warehouseDetail": "Warehouse Detail",
+      "lotDetail": "Lot Detail",
+      "user": "User"
+    }
+  }
+}

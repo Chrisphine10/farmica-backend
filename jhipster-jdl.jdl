@@ -1,35 +1,75 @@
 entity PackingZoneDetail {
+  uicode String 
   pdnDate LocalDate required
   packageDate LocalDate  required
   weightReceived Double required 
   weightBalance Double required
   numberOfCTNs Integer required 
+  receivedCTNs Integer 
   startCTNNumber Integer  
   endCTNNumber Integer 
-  rework Boolean
-  reworkId Long
-  status CurrentZone
+  numberOfCTNsReworked Integer
+  numberOfCTNsSold Integer
+  numberOfCTNsPacked Integer
+  numberOfCTNsInWarehouse Integer
+  createdAt ZonedDateTime 
+}
+
+entity SalesDetail {
+  uicode String 
+  salesDate LocalDate  required
+  numberOfCTNs Integer required 
+  receivedCTNs Integer 
+  startCTNNumber Integer  
+  endCTNNumber Integer 
+  createdAt ZonedDateTime
+}
+
+entity WarehouseDetail {
+  uicode String 
+  warehouseDate LocalDate  required
+  numberOfCTNs Integer  
+  receivedCTNs Integer 
+  startCTNNumber Integer  
+  endCTNNumber Integer 
+  createdAt ZonedDateTime 
+}
+
+entity FarmicaReport {
+  createdAt ZonedDateTime required
+  totalItemsInWarehouse Integer required
+  totalItemsInSales Integer required
+  totalItemsInRework Integer required
+  totalItemsInPacking Integer required
+  totalItems Integer required
+}
+
+entity StyleReport {
+  createdAt ZonedDateTime required
+  totalStyleInWarehouse Integer 
+  totalStyleInSales Integer 
+  totalStyleInRework Integer 
+  totalStyleInPacking Integer
+  totalStyle Integer
 }
 
 entity Comment {
   comment TextBlob required
-  createdAt ZonedDateTime required
-}
-
-entity ReworkComment {
-  comment TextBlob required
+  status CurrentZone
+  zoneId Integer
   createdAt ZonedDateTime required
 }
 
 entity ReworkDetail {
+  uicode String unique
   pdnDate LocalDate required
   reworkDate LocalDate  required
   numberOfCTNs Integer required
   startCTNNumber Integer 
   endCTNNumber Integer 
   status ReworkStatus required
+  createdAt ZonedDateTime
 }
-
 
 entity LotDetail{
   lotNo Integer	unique required
@@ -37,10 +77,11 @@ entity LotDetail{
 
 entity VariableData {
   accumulation Integer
+  aiAccessCode String
 }
 
 entity BatchDetail {
-  batchNo String required 
+  batchNo String unique required 
   createdAt ZonedDateTime required
   drier Integer
 }
@@ -54,6 +95,7 @@ entity Region {
 
 entity Style {
   name String required
+  grade Grade required
   code String required
 }
 
@@ -70,33 +112,31 @@ enum ReworkStatus {
 } 
 
 relationship ManyToOne {
-	 BatchDetail {region(id) required} to Region 
-	 LotDetail {batchDetail(id) required} to BatchDetail
+	  BatchDetail {region(id) required} to Region 
+    WarehouseDetail {packingZoneDetail(id) required} to PackingZoneDetail
+    ReworkDetail {warehouseDetail(id) required} to WarehouseDetail
+    SalesDetail {warehouseDetail(id) required} to WarehouseDetail
+	  LotDetail {batchDetail(id) required} to BatchDetail
     PackingZoneDetail {lotDetail(id) required} to LotDetail
     ReworkDetail {lotDetail(id) required} to LotDetail
-    PackingZoneDetail { user(login) required } to User	with builtInEntity 
+    WarehouseDetail {lotDetail(id) required} to LotDetail
+    SalesDetail {lotDetail(id) required} to LotDetail
+    PackingZoneDetail {style(id) required} to Style
+    WarehouseDetail {style(id) required} to Style
+    SalesDetail {style(id) required} to Style
+    PackingZoneDetail { user(login) required } to User with builtInEntity 
     ReworkDetail { user(login) required } to User with builtInEntity
+    WarehouseDetail { user(login) required } to User with builtInEntity
+    SalesDetail { user(login) required } to User with builtInEntity
     Region { user(login) required } to User with builtInEntity
     Style { user(login) required } to User with builtInEntity
     LotDetail { user(login) required } to User with builtInEntity
     BatchDetail { user(login) required } to User with builtInEntity   
     Comment { user(login) required } to User with builtInEntity
-    Comment { packingZoneDetail(id) required } to PackingZoneDetail
-    ReworkComment { user(login) required } to User with builtInEntity
-    ReworkComment { reworkDetail(id) required } to ReworkDetail
+    StyleReport { style(id) required } to Style
 }
 
-relationship OneToOne {
-	  PackingZoneDetail {style(id) required} to Style	{packingZoneDetail(id) required }
-}
+
 
 dto * with mapstruct
 service * with serviceClass
-paginate * with pagination
-
-
-
-
-
-
-

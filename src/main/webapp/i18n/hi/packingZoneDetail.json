@@ -1,0 +1,40 @@
+{
+  "farmicaApp": {
+    "packingZoneDetail": {
+      "home": {
+        "title": "PackingZoneDetails",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Packing Zone Detail बनाएँ",
+        "createOrEditLabel": "Packing Zone Detail बनाएँ या संपादित करें",
+        "notFound": "No Packing Zone Details found"
+      },
+      "created": "एक नया Packing Zone Detail [identifier: {{ param }}] तैयार है",
+      "updated": "एक Packing Zone Detail [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Packing Zone Detail [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Packing Zone Detail [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Packing Zone Detail"
+      },
+      "id": "ID",
+      "uicode": "Uicode",
+      "pdnDate": "Pdn Date",
+      "packageDate": "Package Date",
+      "weightReceived": "Weight Received",
+      "weightBalance": "Weight Balance",
+      "numberOfCTNs": "Number Of CT Ns",
+      "receivedCTNs": "Received CT Ns",
+      "startCTNNumber": "Start CTN Number",
+      "endCTNNumber": "End CTN Number",
+      "numberOfCTNsReworked": "Number Of CT Ns Reworked",
+      "numberOfCTNsSold": "Number Of CT Ns Sold",
+      "numberOfCTNsPacked": "Number Of CT Ns Packed",
+      "numberOfCTNsInWarehouse": "Number Of CT Ns In Warehouse",
+      "createdAt": "Created At",
+      "lotDetail": "Lot Detail",
+      "style": "Style",
+      "user": "User"
+    }
+  }
+}

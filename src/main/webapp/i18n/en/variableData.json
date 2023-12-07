@@ -1,0 +1,25 @@
+{
+  "farmicaApp": {
+    "variableData": {
+      "home": {
+        "title": "Variable Data",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Variable Data",
+        "createOrEditLabel": "Create or edit a Variable Data",
+        "notFound": "No Variable Data found"
+      },
+      "created": "A new Variable Data is created with identifier {{ param }}",
+      "updated": "A Variable Data is updated with identifier {{ param }}",
+      "deleted": "A Variable Data is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Variable Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Variable Data"
+      },
+      "id": "ID",
+      "accumulation": "Accumulation",
+      "aiAccessCode": "Ai Access Code"
+    }
+  }
+}

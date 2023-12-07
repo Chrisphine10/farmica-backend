@@ -1,0 +1,28 @@
+{
+  "farmicaApp": {
+    "batchDetail": {
+      "home": {
+        "title": "Batch Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Batch Detail",
+        "createOrEditLabel": "Create or edit a Batch Detail",
+        "notFound": "No Batch Details found"
+      },
+      "created": "A new Batch Detail is created with identifier {{ param }}",
+      "updated": "A Batch Detail is updated with identifier {{ param }}",
+      "deleted": "A Batch Detail is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Batch Detail {{ id }}?"
+      },
+      "detail": {
+        "title": "Batch Detail"
+      },
+      "id": "ID",
+      "batchNo": "Batch No",
+      "createdAt": "Created At",
+      "drier": "Drier",
+      "region": "Region",
+      "user": "User"
+    }
+  }
+}

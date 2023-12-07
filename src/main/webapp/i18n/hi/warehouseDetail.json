@@ -1,0 +1,34 @@
+{
+  "farmicaApp": {
+    "warehouseDetail": {
+      "home": {
+        "title": "WarehouseDetails",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Warehouse Detail बनाएँ",
+        "createOrEditLabel": "Warehouse Detail बनाएँ या संपादित करें",
+        "notFound": "No Warehouse Details found"
+      },
+      "created": "एक नया Warehouse Detail [identifier: {{ param }}] तैयार है",
+      "updated": "एक Warehouse Detail [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Warehouse Detail [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Warehouse Detail [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Warehouse Detail"
+      },
+      "id": "ID",
+      "uicode": "Uicode",
+      "warehouseDate": "Warehouse Date",
+      "numberOfCTNs": "Number Of CT Ns",
+      "receivedCTNs": "Received CT Ns",
+      "startCTNNumber": "Start CTN Number",
+      "endCTNNumber": "End CTN Number",
+      "createdAt": "Created At",
+      "packingZoneDetail": "Packing Zone Detail",
+      "lotDetail": "Lot Detail",
+      "style": "Style",
+      "user": "User"
+    }
+  }
+}

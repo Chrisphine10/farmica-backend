@@ -1,0 +1,40 @@
+{
+  "farmicaApp": {
+    "packingZoneDetail": {
+      "home": {
+        "title": "PackingZoneDetails",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Packing Zone Detail",
+        "createOrEditLabel": "Créer ou éditer un Packing Zone Detail",
+        "notFound": "Aucun Packing Zone Detail trouvé"
+      },
+      "created": "Un nouveau Packing Zone Detail a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Packing Zone Detail avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Packing Zone Detail avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Packing Zone Detail {{ id }} ?"
+      },
+      "detail": {
+        "title": "Packing Zone Detail"
+      },
+      "id": "ID",
+      "uicode": "Uicode",
+      "pdnDate": "Pdn Date",
+      "packageDate": "Package Date",
+      "weightReceived": "Weight Received",
+      "weightBalance": "Weight Balance",
+      "numberOfCTNs": "Number Of CT Ns",
+      "receivedCTNs": "Received CT Ns",
+      "startCTNNumber": "Start CTN Number",
+      "endCTNNumber": "End CTN Number",
+      "numberOfCTNsReworked": "Number Of CT Ns Reworked",
+      "numberOfCTNsSold": "Number Of CT Ns Sold",
+      "numberOfCTNsPacked": "Number Of CT Ns Packed",
+      "numberOfCTNsInWarehouse": "Number Of CT Ns In Warehouse",
+      "createdAt": "Created At",
+      "lotDetail": "Lot Detail",
+      "style": "Style",
+      "user": "User"
+    }
+  }
+}
