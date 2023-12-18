@@ -262,3 +262,5 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [Leaflet]: https://leafletjs.com/
 [DefinitelyTyped]: https://definitelytyped.org/
 [Gatling]: https://gatling.io/
+
+# farmica-backend
