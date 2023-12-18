@@ -7,7 +7,7 @@
     {
       "fieldName": "lotNo",
       "fieldType": "Integer",
-      "fieldValidateRules": ["unique", "required"]
+      "fieldValidateRules": ["required"]
     }
   ],
   "name": "LotDetail",

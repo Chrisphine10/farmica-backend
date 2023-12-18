@@ -34,6 +34,16 @@ public interface WarehouseRepo extends JpaRepository<WarehouseDetail, Long> {
         return this.queryAllByUicode(uicode);
     }
 
+    // find total warehouse count from warehouse details with zone detail id
+    default Integer findTotalWarehouseCountByZoneDetailId(Long zoneDetailId) {
+        List<WarehouseDetail> totalWarehouseDetails = findAllByZoneDetailId(zoneDetailId);
+        Integer totalWarehouseCount = 0;
+        for (WarehouseDetail warehouseDetail : totalWarehouseDetails) {
+            totalWarehouseCount += warehouseDetail.getNumberOfCTNs();
+        }
+        return totalWarehouseCount;
+    }
+
     // find total warehouse count from warehouse details with a start date and end
     // date
     default Integer findTotalWarehouseCountByStartDateAndEndDate(ZonedDateTime startDate, ZonedDateTime endDate) {
@@ -44,6 +54,10 @@ public interface WarehouseRepo extends JpaRepository<WarehouseDetail, Long> {
         }
         return totalWarehouseCount;
     }
+
+    // query all warehouse details with zone detail id
+    @Query("select warehouseDetail from WarehouseDetail warehouseDetail where warehouseDetail.packingZoneDetail.id = :zoneDetailId")
+    List<WarehouseDetail> findAllByZoneDetailId(@Param("zoneDetailId") Long zoneDetailId);
 
     // query one warehouse details by uicode
     @Query(

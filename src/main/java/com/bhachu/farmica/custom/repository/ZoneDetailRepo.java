@@ -41,7 +41,7 @@ public interface ZoneDetailRepo extends JpaRepository<PackingZoneDetail, Long> {
         List<PackingZoneDetail> totalZoneDetails = findAllByStartDateAndEndDate(startDate, endDate);
         Integer totalZoneCount = 0;
         for (PackingZoneDetail zoneDetail : totalZoneDetails) {
-            totalZoneCount += zoneDetail.getReceivedCTNs();
+            totalZoneCount += zoneDetail.getNumberOfCTNs();
         }
         return totalZoneCount;
     }
@@ -57,7 +57,9 @@ public interface ZoneDetailRepo extends JpaRepository<PackingZoneDetail, Long> {
     }
 
     // find all where number of ctns is greater than 0
-    @Query("select packingZoneDetail from PackingZoneDetail packingZoneDetail where packingZoneDetail.numberOfCTNs > 0")
+    @Query(
+        "select packingZoneDetail from PackingZoneDetail packingZoneDetail where packingZoneDetail.numberOfCTNs > 0 or packingZoneDetail.numberOfCTNsInWarehouse > 0"
+    )
     List<PackingZoneDetail> queryAllByNumberOfCTNsGreaterThanZero();
 
     // query one zone details by uicode

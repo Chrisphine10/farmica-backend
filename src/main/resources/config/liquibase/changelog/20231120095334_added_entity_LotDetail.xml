@@ -15,7 +15,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="lot_no" type="integer">
-                <constraints nullable="false" unique="true" uniqueConstraintName="ux_lot_detail__lot_no" />
+                <constraints nullable="false" />
             </column>
             <column name="batch_detail_id" type="bigint">
                 <constraints nullable="false" />

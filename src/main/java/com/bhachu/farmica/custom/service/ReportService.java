@@ -9,11 +9,15 @@ import com.bhachu.farmica.custom.repository.ZoneDetailRepo;
 import com.bhachu.farmica.domain.FarmicaReport;
 import com.bhachu.farmica.domain.PackingZoneDetail;
 import com.bhachu.farmica.domain.StyleReport;
+import com.bhachu.farmica.domain.WarehouseDetail;
 import com.bhachu.farmica.service.FarmicaReportService;
+import com.bhachu.farmica.service.PackingZoneDetailService;
 import com.bhachu.farmica.service.StyleService;
 import com.bhachu.farmica.service.dto.FarmicaReportDTO;
+import com.bhachu.farmica.service.dto.PackingZoneDetailDTO;
 import com.bhachu.farmica.service.dto.StyleDTO;
 import com.bhachu.farmica.service.mapper.FarmicaReportMapper;
+import com.bhachu.farmica.service.mapper.PackingZoneDetailMapper;
 import com.bhachu.farmica.service.mapper.StyleMapper;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -56,6 +60,12 @@ public class ReportService {
 
     @Autowired
     private StyleMapper styleMapper;
+
+    @Autowired
+    private PackingZoneDetailMapper packingZoneDetailMapper;
+
+    @Autowired
+    private PackingZoneDetailService packingZoneDetailService;
 
     public ReportService() {}
 
@@ -256,6 +266,49 @@ public class ReportService {
         );
 
         return farmicaReportDTO;
+    }
+
+    // ! Find all the number of CTNs in warehouse belonging to a packing zone and
+    // ! update the packing zone details
+    public Boolean updatePackingZoneDetails() {
+        try {
+            List<PackingZoneDetail> zoneDetails = zoneDetailRepo.findAll();
+            for (PackingZoneDetail zoneDetail : zoneDetails) {
+                // zone DTO
+                PackingZoneDetailDTO zoneDetailDTO = packingZoneDetailMapper.toDto(zoneDetail);
+                // find all the warehouse data of this zone
+                Integer totalNumberOfCTNsInWarehouse = 0;
+                totalNumberOfCTNsInWarehouse = warehouseRepo.findTotalWarehouseCountByZoneDetailId(zoneDetail.getId());
+                List<WarehouseDetail> warehouseDetails = warehouseRepo.findAllByZoneDetailId(zoneDetail.getId());
+                Integer totalNumberOfCTNsInRework = 0;
+                Integer totalNumberOfCTNsInSales = 0;
+                for (WarehouseDetail warehouseDetail : warehouseDetails) {
+                    // find all the rework data of this zone
+                    totalNumberOfCTNsInRework =
+                        totalNumberOfCTNsInRework + reworkRepo.findTotalReworkCountByWarehouseDetailId(warehouseDetail.getId());
+                    // find all the sales data of this zone
+                    totalNumberOfCTNsInSales =
+                        totalNumberOfCTNsInRework + salesRepo.findTotalSalesCountByWarehouseDetailId(warehouseDetail.getId());
+                }
+
+                System.err.println("totalNumberOfCTNsInWarehouse " + totalNumberOfCTNsInWarehouse);
+                System.err.println("totalNumberOfCTNsInRework " + totalNumberOfCTNsInRework);
+                System.err.println("totalNumberOfCTNsInSales " + totalNumberOfCTNsInSales);
+
+                zoneDetailDTO.setNumberOfCTNsInWarehouse(totalNumberOfCTNsInWarehouse);
+                zoneDetailDTO.setNumberOfCTNsReworked(totalNumberOfCTNsInRework);
+                zoneDetailDTO.setNumberOfCTNsSold(totalNumberOfCTNsInSales);
+                zoneDetailDTO.setNumberOfCTNsPacked(
+                    zoneDetailDTO.getReceivedCTNs() - (totalNumberOfCTNsInWarehouse + totalNumberOfCTNsInRework + totalNumberOfCTNsInSales)
+                );
+                packingZoneDetailService.update(zoneDetailDTO);
+                System.err.println("Updated zone detail " + zoneDetail.getId());
+            }
+            return true;
+        } catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }
     }
 
     public List<StyleReport> getLiveStyleReports() {

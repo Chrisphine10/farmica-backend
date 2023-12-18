@@ -36,6 +36,20 @@ public interface ReworkRepo extends JpaRepository<ReworkDetail, Long> {
         return this.queryAllByUicode(uicode);
     }
 
+    // find total rework count from rework details by packing zone details id
+    default Integer findTotalReworkCountByWarehouseDetailId(Long WarehouseId) {
+        List<ReworkDetail> totalReworkDetails = findAllByZoneDetailId(WarehouseId);
+        Integer totalReworkCount = 0;
+        for (ReworkDetail reworkDetail : totalReworkDetails) {
+            totalReworkCount += reworkDetail.getNumberOfCTNs();
+        }
+        return totalReworkCount;
+    }
+
+    // query all rework details with zone detail id
+    @Query("select reworkDetail from ReworkDetail reworkDetail where reworkDetail.warehouseDetail.id = :zoneDetailId")
+    List<ReworkDetail> findAllByZoneDetailId(@Param("zoneDetailId") Long zoneDetailId);
+
     // query one rework details by uicode
     @Query(
         "select reworkDetail from ReworkDetail reworkDetail where reworkDetail.uicode = :uicode order by reworkDetail.createdAt desc limit 1"

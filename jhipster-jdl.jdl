@@ -72,7 +72,7 @@ entity ReworkDetail {
 }
 
 entity LotDetail{
-  lotNo Integer	unique required
+  lotNo Integer required
 }
 
 entity VariableData {
@@ -140,3 +140,4 @@ relationship ManyToOne {
 
 dto * with mapstruct
 service * with serviceClass
+paginate * with pagination

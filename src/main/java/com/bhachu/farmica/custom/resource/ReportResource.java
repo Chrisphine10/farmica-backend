@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -71,5 +72,11 @@ public class ReportResource extends FarmicaReportResource {
     public ResponseEntity<List<StyleReport>> getLiveStyleReports() {
         log.debug("REST request to get live style reports");
         return new ResponseEntity<>(reportService.getLiveStyleReports(), HttpStatus.OK);
+    }
+
+    @GetMapping("/update-zone-data")
+    public ResponseEntity<Boolean> updateZoneData() {
+        log.debug("REST request to update zone data");
+        return new ResponseEntity<>(reportService.updatePackingZoneDetails(), HttpStatus.OK);
     }
 }

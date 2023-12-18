@@ -21,7 +21,7 @@ public class LotDetail implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "lot_no", nullable = false, unique = true)
+    @Column(name = "lot_no", nullable = false)
     private Integer lotNo;
 
     @ManyToOne(optional = false)

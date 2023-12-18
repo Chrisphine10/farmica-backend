@@ -44,6 +44,20 @@ public interface SalesRepo extends JpaRepository<SalesDetail, Long> {
         return this.queryAllByUicode(uicode);
     }
 
+    // find total sales count from sales details with zone detail id
+    default Integer findTotalSalesCountByWarehouseDetailId(Long warehouseId) {
+        List<SalesDetail> totalSalesDetails = this.findAllByZoneDetailId(warehouseId);
+        Integer totalSalesCount = 0;
+        for (SalesDetail salesDetail : totalSalesDetails) {
+            totalSalesCount += salesDetail.getNumberOfCTNs();
+        }
+        return totalSalesCount;
+    }
+
+    // query all sales details with zone detail id
+    @Query("select salesDetail from SalesDetail salesDetail where salesDetail.warehouseDetail.id = :zoneDetailId")
+    List<SalesDetail> findAllByZoneDetailId(@Param("zoneDetailId") Long zoneDetailId);
+
     // query one sales details by uicode
     @Query("select salesDetail from SalesDetail salesDetail where salesDetail.uicode = :uicode order by salesDetail.createdAt desc limit 1")
     Optional<SalesDetail> queryAllByUicode(@Param("uicode") String uicode);
