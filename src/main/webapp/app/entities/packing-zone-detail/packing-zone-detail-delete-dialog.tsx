@@ -25,7 +25,7 @@ export const PackingZoneDetailDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.packingZoneDetail.updateSuccess);
 
   const handleClose = () => {
-    navigate('/packing-zone-detail');
+    navigate('/packing-zone-detail' + pageLocation.search);
   };
 
   useEffect(() => {

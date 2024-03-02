@@ -4,10 +4,7 @@ import com.bhachu.farmica.domain.Region;
 import com.bhachu.farmica.repository.RegionRepository;
 import com.bhachu.farmica.service.dto.RegionDTO;
 import com.bhachu.farmica.service.mapper.RegionMapper;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -82,12 +79,13 @@ public class RegionService {
     /**
      * Get all the regions.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<RegionDTO> findAll() {
+    public Page<RegionDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Regions");
-        return regionRepository.findAll().stream().map(regionMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return regionRepository.findAll(pageable).map(regionMapper::toDto);
     }
 
     /**

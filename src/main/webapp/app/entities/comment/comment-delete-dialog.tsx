@@ -25,7 +25,7 @@ export const CommentDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.comment.updateSuccess);
 
   const handleClose = () => {
-    navigate('/comment');
+    navigate('/comment' + pageLocation.search);
   };
 
   useEffect(() => {

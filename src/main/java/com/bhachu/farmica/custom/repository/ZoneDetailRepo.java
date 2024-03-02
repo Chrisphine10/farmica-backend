@@ -41,7 +41,7 @@ public interface ZoneDetailRepo extends JpaRepository<PackingZoneDetail, Long> {
         List<PackingZoneDetail> totalZoneDetails = findAllByStartDateAndEndDate(startDate, endDate);
         Integer totalZoneCount = 0;
         for (PackingZoneDetail zoneDetail : totalZoneDetails) {
-            totalZoneCount += zoneDetail.getNumberOfCTNs();
+            totalZoneCount = totalZoneCount + zoneDetail.getNumberOfCTNs();
         }
         return totalZoneCount;
     }

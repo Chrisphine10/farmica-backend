@@ -25,7 +25,7 @@ export const WarehouseDetailDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.warehouseDetail.updateSuccess);
 
   const handleClose = () => {
-    navigate('/warehouse-detail');
+    navigate('/warehouse-detail' + pageLocation.search);
   };
 
   useEffect(() => {

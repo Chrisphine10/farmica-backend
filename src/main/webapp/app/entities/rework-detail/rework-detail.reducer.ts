@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk, isFulfilled, isPending } from '@reduxjs/toolkit';
-import { ASC } from 'app/shared/util/pagination.constants';
 import { cleanEntity } from 'app/shared/util/entity-utils';
 import { IQueryParams, createEntitySlice, EntityState, serializeAxiosError } from 'app/shared/reducers/reducer.utils';
 import { IReworkDetail, defaultValue } from 'app/shared/model/rework-detail.model';
@@ -11,6 +10,7 @@ const initialState: EntityState<IReworkDetail> = {
   entities: [],
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false,
 };
 
@@ -18,8 +18,8 @@ const apiUrl = 'api/rework-details';
 
 // Actions
 
-export const getEntities = createAsyncThunk('reworkDetail/fetch_entity_list', async ({ sort }: IQueryParams) => {
-  const requestUrl = `${apiUrl}?${sort ? `sort=${sort}&` : ''}cacheBuster=${new Date().getTime()}`;
+export const getEntities = createAsyncThunk('reworkDetail/fetch_entity_list', async ({ page, size, sort }: IQueryParams) => {
+  const requestUrl = `${apiUrl}?${sort ? `page=${page}&size=${size}&sort=${sort}&` : ''}cacheBuster=${new Date().getTime()}`;
   return axios.get<IReworkDetail[]>(requestUrl);
 });
 
@@ -90,19 +90,13 @@ export const ReworkDetailSlice = createEntitySlice({
         state.entity = {};
       })
       .addMatcher(isFulfilled(getEntities), (state, action) => {
-        const { data } = action.payload;
+        const { data, headers } = action.payload;
 
         return {
           ...state,
           loading: false,
-          entities: data.sort((a, b) => {
-            if (!action.meta?.arg?.sort) {
-              return 1;
-            }
-            const order = action.meta.arg.sort.split(',')[1];
-            const predicate = action.meta.arg.sort.split(',')[0];
-            return order === ASC ? (a[predicate] < b[predicate] ? -1 : 1) : b[predicate] < a[predicate] ? -1 : 1;
-          }),
+          entities: data,
+          totalItems: parseInt(headers['x-total-count'], 10),
         };
       })
       .addMatcher(isFulfilled(createEntity, updateEntity, partialUpdateEntity), (state, action) => {

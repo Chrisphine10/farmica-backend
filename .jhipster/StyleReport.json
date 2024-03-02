@@ -31,6 +31,7 @@
     }
   ],
   "name": "StyleReport",
+  "pagination": "pagination",
   "relationships": [
     {
       "otherEntityField": "id",

@@ -28,7 +28,7 @@ export const RegionUpdate = () => {
   const updateSuccess = useAppSelector(state => state.region.updateSuccess);
 
   const handleClose = () => {
-    navigate('/region');
+    navigate('/region' + location.search);
   };
 
   useEffect(() => {

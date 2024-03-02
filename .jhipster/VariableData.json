@@ -14,6 +14,7 @@
     }
   ],
   "name": "VariableData",
+  "pagination": "pagination",
   "relationships": [],
   "searchEngine": "no",
   "service": "serviceClass"

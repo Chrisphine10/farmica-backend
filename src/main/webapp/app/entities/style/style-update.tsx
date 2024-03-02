@@ -30,7 +30,7 @@ export const StyleUpdate = () => {
   const gradeValues = Object.keys(Grade);
 
   const handleClose = () => {
-    navigate('/style');
+    navigate('/style' + location.search);
   };
 
   useEffect(() => {

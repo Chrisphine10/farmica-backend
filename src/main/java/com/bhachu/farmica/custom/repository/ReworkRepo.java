@@ -26,7 +26,7 @@ public interface ReworkRepo extends JpaRepository<ReworkDetail, Long> {
         List<ReworkDetail> totalReworkDetails = findAllByStartDateAndEndDate(startDate, endDate);
         Integer totalReworkCount = 0;
         for (ReworkDetail reworkDetail : totalReworkDetails) {
-            totalReworkCount += reworkDetail.getNumberOfCTNs();
+            totalReworkCount = totalReworkCount + reworkDetail.getNumberOfCTNs();
         }
         return totalReworkCount;
     }

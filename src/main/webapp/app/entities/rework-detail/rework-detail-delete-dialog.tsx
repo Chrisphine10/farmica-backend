@@ -25,7 +25,7 @@ export const ReworkDetailDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.reworkDetail.updateSuccess);
 
   const handleClose = () => {
-    navigate('/rework-detail');
+    navigate('/rework-detail' + pageLocation.search);
   };
 
   useEffect(() => {

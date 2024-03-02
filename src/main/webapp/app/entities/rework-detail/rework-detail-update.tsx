@@ -36,7 +36,7 @@ export const ReworkDetailUpdate = () => {
   const reworkStatusValues = Object.keys(ReworkStatus);
 
   const handleClose = () => {
-    navigate('/rework-detail');
+    navigate('/rework-detail' + location.search);
   };
 
   useEffect(() => {

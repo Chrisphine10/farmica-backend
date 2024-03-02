@@ -25,7 +25,7 @@ export const RegionDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.region.updateSuccess);
 
   const handleClose = () => {
-    navigate('/region');
+    navigate('/region' + pageLocation.search);
   };
 
   useEffect(() => {

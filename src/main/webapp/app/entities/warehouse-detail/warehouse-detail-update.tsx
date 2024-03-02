@@ -37,7 +37,7 @@ export const WarehouseDetailUpdate = () => {
   const updateSuccess = useAppSelector(state => state.warehouseDetail.updateSuccess);
 
   const handleClose = () => {
-    navigate('/warehouse-detail');
+    navigate('/warehouse-detail' + location.search);
   };
 
   useEffect(() => {

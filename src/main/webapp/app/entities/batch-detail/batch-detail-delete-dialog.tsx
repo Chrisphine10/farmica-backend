@@ -25,7 +25,7 @@ export const BatchDetailDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.batchDetail.updateSuccess);
 
   const handleClose = () => {
-    navigate('/batch-detail');
+    navigate('/batch-detail' + pageLocation.search);
   };
 
   useEffect(() => {

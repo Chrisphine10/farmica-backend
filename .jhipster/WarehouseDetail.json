@@ -35,6 +35,7 @@
     }
   ],
   "name": "WarehouseDetail",
+  "pagination": "pagination",
   "relationships": [
     {
       "otherEntityField": "id",

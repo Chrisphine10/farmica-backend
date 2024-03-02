@@ -16,6 +16,7 @@
     }
   ],
   "name": "Region",
+  "pagination": "pagination",
   "relationships": [
     {
       "otherEntityField": "login",

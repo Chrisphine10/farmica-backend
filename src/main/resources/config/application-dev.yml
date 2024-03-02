@@ -34,7 +34,11 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/farmica-v2?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
     username: root
+<<<<<<< HEAD
     password: password
+=======
+    password:
+>>>>>>> df87ca73c209ed8f96e045ff23d62c5564dfde5b
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -73,7 +77,11 @@ jhipster:
   # CORS is only enabled by default with the "dev" profile
   cors:
     # Allow Ionic for JHipster by default (* no longer allowed in Spring Boot 2.4+)
+<<<<<<< HEAD
     allowed-origins: 'http://bhachutrailer.co,https://bhachutrailer.co,http://localhost:3000,http://54.159.23.177:3000,http://54.159.23.177:8080,http://localhost:9000,https://localhost:9000,http://localhost:9060,https://localhost:9060'
+=======
+    allowed-origins: 'http://localhost:9000,https://localhost:9000,http://localhost:9060,https://localhost:9060,http://localhost:3000,http://54.159.23.177:3000,http://54.159.23.177:8080,https://54.159.23.177:8080,https://54.159.23.177:3000,https://bhachutrailer.co,http://bhachutrailer.co'
+>>>>>>> df87ca73c209ed8f96e045ff23d62c5564dfde5b
     # Enable CORS when running in GitHub Codespaces
     allowed-origin-patterns: 'https://*.githubpreview.dev'
     allowed-methods: '*'

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
-import { Translate, getSortState } from 'react-jhipster';
+import { Translate, getPaginationState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { ASC, DESC, SORT } from 'app/shared/util/pagination.constants';
-import { overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
+import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
+import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { getEntities } from './style.reducer';
@@ -16,22 +16,27 @@ export const Style = () => {
   const pageLocation = useLocation();
   const navigate = useNavigate();
 
-  const [sortState, setSortState] = useState(overrideSortStateWithQueryParams(getSortState(pageLocation, 'id'), pageLocation.search));
+  const [paginationState, setPaginationState] = useState(
+    overridePaginationStateWithQueryParams(getPaginationState(pageLocation, ITEMS_PER_PAGE, 'id'), pageLocation.search),
+  );
 
   const styleList = useAppSelector(state => state.style.entities);
   const loading = useAppSelector(state => state.style.loading);
+  const totalItems = useAppSelector(state => state.style.totalItems);
 
   const getAllEntities = () => {
     dispatch(
       getEntities({
-        sort: `${sortState.sort},${sortState.order}`,
+        page: paginationState.activePage - 1,
+        size: paginationState.itemsPerPage,
+        sort: `${paginationState.sort},${paginationState.order}`,
       }),
     );
   };
 
   const sortEntities = () => {
     getAllEntities();
-    const endURL = `?sort=${sortState.sort},${sortState.order}`;
+    const endURL = `?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`;
     if (pageLocation.search !== endURL) {
       navigate(`${pageLocation.pathname}${endURL}`);
     }
@@ -39,23 +44,44 @@ export const Style = () => {
 
   useEffect(() => {
     sortEntities();
-  }, [sortState.order, sortState.sort]);
+  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(pageLocation.search);
+    const page = params.get('page');
+    const sort = params.get(SORT);
+    if (page && sort) {
+      const sortSplit = sort.split(',');
+      setPaginationState({
+        ...paginationState,
+        activePage: +page,
+        sort: sortSplit[0],
+        order: sortSplit[1],
+      });
+    }
+  }, [pageLocation.search]);
 
   const sort = p => () => {
-    setSortState({
-      ...sortState,
-      order: sortState.order === ASC ? DESC : ASC,
+    setPaginationState({
+      ...paginationState,
+      order: paginationState.order === ASC ? DESC : ASC,
       sort: p,
     });
   };
+
+  const handlePagination = currentPage =>
+    setPaginationState({
+      ...paginationState,
+      activePage: currentPage,
+    });
 
   const handleSyncList = () => {
     sortEntities();
   };
 
   const getSortIconByFieldName = (fieldName: string) => {
-    const sortFieldName = sortState.sort;
-    const order = sortState.order;
+    const sortFieldName = paginationState.sort;
+    const order = paginationState.order;
     if (sortFieldName !== fieldName) {
       return faSort;
     } else {
@@ -125,13 +151,25 @@ export const Style = () => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`/style/${style.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
+                      <Button
+                        tag={Link}
+                        to={`/style/${style.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="primary"
+                        size="sm"
+                        data-cy="entityEditButton"
+                      >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`/style/${style.id}/delete`} color="danger" size="sm" data-cy="entityDeleteButton">
+                      <Button
+                        tag={Link}
+                        to={`/style/${style.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="danger"
+                        size="sm"
+                        data-cy="entityDeleteButton"
+                      >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -151,6 +189,24 @@ export const Style = () => {
           )
         )}
       </div>
+      {totalItems ? (
+        <div className={styleList && styleList.length > 0 ? '' : 'd-none'}>
+          <div className="justify-content-center d-flex">
+            <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
+          </div>
+          <div className="justify-content-center d-flex">
+            <JhiPagination
+              activePage={paginationState.activePage}
+              onSelect={handlePagination}
+              maxButtons={5}
+              itemsPerPage={paginationState.itemsPerPage}
+              totalItems={totalItems}
+            />
+          </div>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };

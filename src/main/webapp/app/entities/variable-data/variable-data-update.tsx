@@ -25,7 +25,7 @@ export const VariableDataUpdate = () => {
   const updateSuccess = useAppSelector(state => state.variableData.updateSuccess);
 
   const handleClose = () => {
-    navigate('/variable-data');
+    navigate('/variable-data' + location.search);
   };
 
   useEffect(() => {

@@ -31,7 +31,7 @@ export const BatchDetailUpdate = () => {
   const updateSuccess = useAppSelector(state => state.batchDetail.updateSuccess);
 
   const handleClose = () => {
-    navigate('/batch-detail');
+    navigate('/batch-detail' + location.search);
   };
 
   useEffect(() => {

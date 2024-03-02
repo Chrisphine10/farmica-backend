@@ -4,10 +4,7 @@ import com.bhachu.farmica.domain.LotDetail;
 import com.bhachu.farmica.repository.LotDetailRepository;
 import com.bhachu.farmica.service.dto.LotDetailDTO;
 import com.bhachu.farmica.service.mapper.LotDetailMapper;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -82,12 +79,13 @@ public class LotDetailService {
     /**
      * Get all the lotDetails.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<LotDetailDTO> findAll() {
+    public Page<LotDetailDTO> findAll(Pageable pageable) {
         log.debug("Request to get all LotDetails");
-        return lotDetailRepository.findAll().stream().map(lotDetailMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return lotDetailRepository.findAll(pageable).map(lotDetailMapper::toDto);
     }
 
     /**
