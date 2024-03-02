@@ -4,10 +4,7 @@ import com.bhachu.farmica.domain.Comment;
 import com.bhachu.farmica.repository.CommentRepository;
 import com.bhachu.farmica.service.dto.CommentDTO;
 import com.bhachu.farmica.service.mapper.CommentMapper;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -82,12 +79,13 @@ public class CommentService {
     /**
      * Get all the comments.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<CommentDTO> findAll() {
+    public Page<CommentDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Comments");
-        return commentRepository.findAll().stream().map(commentMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return commentRepository.findAll(pageable).map(commentMapper::toDto);
     }
 
     /**

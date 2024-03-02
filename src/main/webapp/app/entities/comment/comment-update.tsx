@@ -30,7 +30,7 @@ export const CommentUpdate = () => {
   const currentZoneValues = Object.keys(CurrentZone);
 
   const handleClose = () => {
-    navigate('/comment');
+    navigate('/comment' + location.search);
   };
 
   useEffect(() => {

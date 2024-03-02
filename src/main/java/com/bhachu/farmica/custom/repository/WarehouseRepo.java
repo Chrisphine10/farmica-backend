@@ -50,7 +50,7 @@ public interface WarehouseRepo extends JpaRepository<WarehouseDetail, Long> {
         List<WarehouseDetail> totalWarehouseDetails = findAllByStartDateAndEndDate(startDate, endDate);
         Integer totalWarehouseCount = 0;
         for (WarehouseDetail warehouseDetail : totalWarehouseDetails) {
-            totalWarehouseCount += warehouseDetail.getReceivedCTNs();
+            totalWarehouseCount = totalWarehouseCount + warehouseDetail.getReceivedCTNs();
         }
         return totalWarehouseCount;
     }

@@ -25,7 +25,7 @@ export const LotDetailDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.lotDetail.updateSuccess);
 
   const handleClose = () => {
-    navigate('/lot-detail');
+    navigate('/lot-detail' + pageLocation.search);
   };
 
   useEffect(() => {

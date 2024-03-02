@@ -25,7 +25,7 @@ export const FarmicaReportUpdate = () => {
   const updateSuccess = useAppSelector(state => state.farmicaReport.updateSuccess);
 
   const handleClose = () => {
-    navigate('/farmica-report');
+    navigate('/farmica-report' + location.search);
   };
 
   useEffect(() => {

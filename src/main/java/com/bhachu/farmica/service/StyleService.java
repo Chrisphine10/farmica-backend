@@ -4,10 +4,7 @@ import com.bhachu.farmica.domain.Style;
 import com.bhachu.farmica.repository.StyleRepository;
 import com.bhachu.farmica.service.dto.StyleDTO;
 import com.bhachu.farmica.service.mapper.StyleMapper;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -82,12 +79,13 @@ public class StyleService {
     /**
      * Get all the styles.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<StyleDTO> findAll() {
+    public Page<StyleDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Styles");
-        return styleRepository.findAll().stream().map(styleMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return styleRepository.findAll(pageable).map(styleMapper::toDto);
     }
 
     /**

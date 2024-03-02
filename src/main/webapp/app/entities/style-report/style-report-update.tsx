@@ -28,7 +28,7 @@ export const StyleReportUpdate = () => {
   const updateSuccess = useAppSelector(state => state.styleReport.updateSuccess);
 
   const handleClose = () => {
-    navigate('/style-report');
+    navigate('/style-report' + location.search);
   };
 
   useEffect(() => {

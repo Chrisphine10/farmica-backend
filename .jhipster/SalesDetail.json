@@ -36,6 +36,7 @@
     }
   ],
   "name": "SalesDetail",
+  "pagination": "pagination",
   "relationships": [
     {
       "otherEntityField": "id",

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <!--
@@ -11,7 +9,7 @@
     -->
     <changeSet id="20231120095034-1" author="jhipster">
         <createTable tableName="comment">
-            <column name="id" type="bigint" autoIncrement="true" startWith="1500">
+            <column name="id" type="bigint" autoIncrement="true" startWith="1">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="comment" type="${clobType}">
@@ -45,11 +43,7 @@
           Spring Boot configuration key.
     -->
     <changeSet id="20231120095034-1-data" author="jhipster" context="faker">
-        <loadData
-                  file="config/liquibase/fake-data/comment.csv"
-                  separator=";"
-                  tableName="comment"
-                  usePreparedStatements="true">
+        <loadData file="config/liquibase/fake-data/comment.csv" separator=";" tableName="comment" usePreparedStatements="true">
             <column name="id" type="numeric"/>
             <column name="comment" type="clob"/>
             <column name="status" type="string"/>

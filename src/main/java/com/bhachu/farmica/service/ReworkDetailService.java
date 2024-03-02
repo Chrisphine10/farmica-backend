@@ -4,10 +4,7 @@ import com.bhachu.farmica.domain.ReworkDetail;
 import com.bhachu.farmica.repository.ReworkDetailRepository;
 import com.bhachu.farmica.service.dto.ReworkDetailDTO;
 import com.bhachu.farmica.service.mapper.ReworkDetailMapper;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -82,12 +79,13 @@ public class ReworkDetailService {
     /**
      * Get all the reworkDetails.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<ReworkDetailDTO> findAll() {
+    public Page<ReworkDetailDTO> findAll(Pageable pageable) {
         log.debug("Request to get all ReworkDetails");
-        return reworkDetailRepository.findAll().stream().map(reworkDetailMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return reworkDetailRepository.findAll(pageable).map(reworkDetailMapper::toDto);
     }
 
     /**
