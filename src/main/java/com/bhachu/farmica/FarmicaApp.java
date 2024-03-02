@@ -2,6 +2,7 @@ package com.bhachu.farmica;
 
 import com.bhachu.farmica.config.ApplicationProperties;
 import com.bhachu.farmica.config.CRLFLogConverter;
+import com.bhachu.farmica.custom.service.ScheduledTasks;
 import jakarta.annotation.PostConstruct;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -17,12 +18,15 @@ import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.config.ScheduledTask;
 import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
 
 @SpringBootApplication
 @EnableJpaRepositories("com.bhachu.farmica.custom.repository")
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
+@EnableScheduling
 public class FarmicaApp {
 
     private static final Logger log = LoggerFactory.getLogger(FarmicaApp.class);
@@ -73,6 +77,8 @@ public class FarmicaApp {
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);
+        ScheduledTasks scheduledTasks = new ScheduledTasks();
+        scheduledTasks.executeTask();
     }
 
     private static void logApplicationStartup(Environment env) {

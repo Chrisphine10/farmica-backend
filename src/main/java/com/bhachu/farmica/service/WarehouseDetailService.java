@@ -4,10 +4,7 @@ import com.bhachu.farmica.domain.WarehouseDetail;
 import com.bhachu.farmica.repository.WarehouseDetailRepository;
 import com.bhachu.farmica.service.dto.WarehouseDetailDTO;
 import com.bhachu.farmica.service.mapper.WarehouseDetailMapper;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -82,16 +79,13 @@ public class WarehouseDetailService {
     /**
      * Get all the warehouseDetails.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<WarehouseDetailDTO> findAll() {
+    public Page<WarehouseDetailDTO> findAll(Pageable pageable) {
         log.debug("Request to get all WarehouseDetails");
-        return warehouseDetailRepository
-            .findAll()
-            .stream()
-            .map(warehouseDetailMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return warehouseDetailRepository.findAll(pageable).map(warehouseDetailMapper::toDto);
     }
 
     /**

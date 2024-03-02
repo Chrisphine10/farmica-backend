@@ -36,6 +36,7 @@
     }
   ],
   "name": "FarmicaReport",
+  "pagination": "pagination",
   "relationships": [],
   "searchEngine": "no",
   "service": "serviceClass"

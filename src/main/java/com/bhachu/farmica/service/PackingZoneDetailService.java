@@ -4,10 +4,7 @@ import com.bhachu.farmica.domain.PackingZoneDetail;
 import com.bhachu.farmica.repository.PackingZoneDetailRepository;
 import com.bhachu.farmica.service.dto.PackingZoneDetailDTO;
 import com.bhachu.farmica.service.mapper.PackingZoneDetailMapper;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -85,16 +82,13 @@ public class PackingZoneDetailService {
     /**
      * Get all the packingZoneDetails.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<PackingZoneDetailDTO> findAll() {
+    public Page<PackingZoneDetailDTO> findAll(Pageable pageable) {
         log.debug("Request to get all PackingZoneDetails");
-        return packingZoneDetailRepository
-            .findAll()
-            .stream()
-            .map(packingZoneDetailMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return packingZoneDetailRepository.findAll(pageable).map(packingZoneDetailMapper::toDto);
     }
 
     /**

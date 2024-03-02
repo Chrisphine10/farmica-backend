@@ -31,7 +31,7 @@ export const LotDetailUpdate = () => {
   const updateSuccess = useAppSelector(state => state.lotDetail.updateSuccess);
 
   const handleClose = () => {
-    navigate('/lot-detail');
+    navigate('/lot-detail' + location.search);
   };
 
   useEffect(() => {

@@ -22,6 +22,7 @@
     }
   ],
   "name": "Style",
+  "pagination": "pagination",
   "relationships": [
     {
       "otherEntityField": "login",

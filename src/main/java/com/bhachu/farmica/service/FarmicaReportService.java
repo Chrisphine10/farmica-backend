@@ -4,12 +4,11 @@ import com.bhachu.farmica.domain.FarmicaReport;
 import com.bhachu.farmica.repository.FarmicaReportRepository;
 import com.bhachu.farmica.service.dto.FarmicaReportDTO;
 import com.bhachu.farmica.service.mapper.FarmicaReportMapper;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -80,12 +79,13 @@ public class FarmicaReportService {
     /**
      * Get all the farmicaReports.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<FarmicaReportDTO> findAll() {
+    public Page<FarmicaReportDTO> findAll(Pageable pageable) {
         log.debug("Request to get all FarmicaReports");
-        return farmicaReportRepository.findAll().stream().map(farmicaReportMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return farmicaReportRepository.findAll(pageable).map(farmicaReportMapper::toDto);
     }
 
     /**

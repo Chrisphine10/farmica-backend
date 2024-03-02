@@ -25,7 +25,7 @@ export const StyleReportDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.styleReport.updateSuccess);
 
   const handleClose = () => {
-    navigate('/style-report');
+    navigate('/style-report' + pageLocation.search);
   };
 
   useEffect(() => {

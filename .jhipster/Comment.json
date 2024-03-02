@@ -26,6 +26,7 @@
     }
   ],
   "name": "Comment",
+  "pagination": "pagination",
   "relationships": [
     {
       "otherEntityField": "login",

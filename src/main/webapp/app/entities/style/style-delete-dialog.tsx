@@ -25,7 +25,7 @@ export const StyleDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.style.updateSuccess);
 
   const handleClose = () => {
-    navigate('/style');
+    navigate('/style' + pageLocation.search);
   };
 
   useEffect(() => {

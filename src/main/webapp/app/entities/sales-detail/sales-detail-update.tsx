@@ -37,7 +37,7 @@ export const SalesDetailUpdate = () => {
   const updateSuccess = useAppSelector(state => state.salesDetail.updateSuccess);
 
   const handleClose = () => {
-    navigate('/sales-detail');
+    navigate('/sales-detail' + location.search);
   };
 
   useEffect(() => {

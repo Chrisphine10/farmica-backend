@@ -4,10 +4,7 @@ import com.bhachu.farmica.domain.BatchDetail;
 import com.bhachu.farmica.repository.BatchDetailRepository;
 import com.bhachu.farmica.service.dto.BatchDetailDTO;
 import com.bhachu.farmica.service.mapper.BatchDetailMapper;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -82,12 +79,13 @@ public class BatchDetailService {
     /**
      * Get all the batchDetails.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<BatchDetailDTO> findAll() {
+    public Page<BatchDetailDTO> findAll(Pageable pageable) {
         log.debug("Request to get all BatchDetails");
-        return batchDetailRepository.findAll().stream().map(batchDetailMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return batchDetailRepository.findAll(pageable).map(batchDetailMapper::toDto);
     }
 
     /**
