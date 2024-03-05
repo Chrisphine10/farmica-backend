@@ -384,7 +384,7 @@ public class ReportService {
                     totalNumberOfCTNsInSales =
                         totalNumberOfCTNsInRework + salesRepo.findTotalSalesCountByWarehouseDetailId(warehouseDetail.getId());
                 }
-
+                totalNumberOfCTNsInWarehouse = totalNumberOfCTNsInWarehouse - (totalNumberOfCTNsInRework + totalNumberOfCTNsInSales);
                 System.err.println("totalNumberOfCTNsInWarehouse " + totalNumberOfCTNsInWarehouse);
                 System.err.println("totalNumberOfCTNsInRework " + totalNumberOfCTNsInRework);
                 System.err.println("totalNumberOfCTNsInSales " + totalNumberOfCTNsInSales);
