@@ -69,7 +69,8 @@ public class ReportService {
     @Autowired
     private PackingZoneDetailService packingZoneDetailService;
 
-    public ReportService() {}
+    public ReportService() {
+    }
 
     // private Boolean checkIfOneMonthHasPassed(ZonedDateTime lastReportTime) {
     // ZonedDateTime currentTime = ZonedDateTime.now();
@@ -115,12 +116,12 @@ public class ReportService {
         }
     }
 
-    private Integer getTotalStyleCount(Long styleId, ZonedDateTime startOfMonthDateTime, ZonedDateTime endOfMonthDateTime) {
+    private Integer getTotalStyleCount(Long styleId, ZonedDateTime startOfMonthDateTime,
+            ZonedDateTime endOfMonthDateTime) {
         List<PackingZoneDetail> zoneDetails = zoneDetailRepo.findAllByStartDateAndEndDateAndStyle(
-            startOfMonthDateTime,
-            endOfMonthDateTime,
-            styleId
-        );
+                startOfMonthDateTime,
+                endOfMonthDateTime,
+                styleId);
         Integer totalZoneCount = 0;
         for (PackingZoneDetail zoneDetail : zoneDetails) {
             totalZoneCount += zoneDetail.getNumberOfCTNs();
@@ -128,12 +129,12 @@ public class ReportService {
         return totalZoneCount;
     }
 
-    private Integer getStyleCountForWarehouse(Long styleId, ZonedDateTime startOfMonthDateTime, ZonedDateTime endOfMonthDateTime) {
+    private Integer getStyleCountForWarehouse(Long styleId, ZonedDateTime startOfMonthDateTime,
+            ZonedDateTime endOfMonthDateTime) {
         List<PackingZoneDetail> zoneDetails = zoneDetailRepo.findAllByStartDateAndEndDateAndStyle(
-            startOfMonthDateTime,
-            endOfMonthDateTime,
-            styleId
-        );
+                startOfMonthDateTime,
+                endOfMonthDateTime,
+                styleId);
         Integer totalZoneCount = 0;
         for (PackingZoneDetail zoneDetail : zoneDetails) {
             totalZoneCount += zoneDetail.getNumberOfCTNsInWarehouse();
@@ -141,12 +142,12 @@ public class ReportService {
         return totalZoneCount;
     }
 
-    private Integer getStyleCountForSales(Long styleId, ZonedDateTime startOfMonthDateTime, ZonedDateTime endOfMonthDateTime) {
+    private Integer getStyleCountForSales(Long styleId, ZonedDateTime startOfMonthDateTime,
+            ZonedDateTime endOfMonthDateTime) {
         List<PackingZoneDetail> zoneDetails = zoneDetailRepo.findAllByStartDateAndEndDateAndStyle(
-            startOfMonthDateTime,
-            endOfMonthDateTime,
-            styleId
-        );
+                startOfMonthDateTime,
+                endOfMonthDateTime,
+                styleId);
         Integer totalZoneCount = 0;
         for (PackingZoneDetail zoneDetail : zoneDetails) {
             totalZoneCount += zoneDetail.getNumberOfCTNsSold();
@@ -154,12 +155,12 @@ public class ReportService {
         return totalZoneCount;
     }
 
-    private Integer getStyleCountForRework(Long styleId, ZonedDateTime startOfMonthDateTime, ZonedDateTime endOfMonthDateTime) {
+    private Integer getStyleCountForRework(Long styleId, ZonedDateTime startOfMonthDateTime,
+            ZonedDateTime endOfMonthDateTime) {
         List<PackingZoneDetail> zoneDetails = zoneDetailRepo.findAllByStartDateAndEndDateAndStyle(
-            startOfMonthDateTime,
-            endOfMonthDateTime,
-            styleId
-        );
+                startOfMonthDateTime,
+                endOfMonthDateTime,
+                styleId);
         Integer totalZoneCount = 0;
         for (PackingZoneDetail zoneDetail : zoneDetails) {
             totalZoneCount += zoneDetail.getNumberOfCTNsReworked();
@@ -167,12 +168,12 @@ public class ReportService {
         return totalZoneCount;
     }
 
-    private Integer getStyleCountForPacking(Long styleId, ZonedDateTime startOfMonthDateTime, ZonedDateTime endOfMonthDateTime) {
+    private Integer getStyleCountForPacking(Long styleId, ZonedDateTime startOfMonthDateTime,
+            ZonedDateTime endOfMonthDateTime) {
         List<PackingZoneDetail> zoneDetails = zoneDetailRepo.findAllByStartDateAndEndDateAndStyle(
-            startOfMonthDateTime,
-            endOfMonthDateTime,
-            styleId
-        );
+                startOfMonthDateTime,
+                endOfMonthDateTime,
+                styleId);
         Integer totalZoneCount = 0;
         for (PackingZoneDetail zoneDetail : zoneDetails) {
             totalZoneCount += zoneDetail.getNumberOfCTNsPacked();
@@ -187,7 +188,8 @@ public class ReportService {
         List<StyleDTO> styles = styleService.findAll(wholePage).toList();
 
         for (StyleDTO style : styles) {
-            StyleReport styleReport = stylesReportRepo.findFirstByStyleOrderByCreatedAtDesc(styleMapper.toEntity(style)).orElseThrow();
+            StyleReport styleReport = stylesReportRepo.findFirstByStyleOrderByCreatedAtDesc(styleMapper.toEntity(style))
+                    .orElseThrow();
             styleReports.add(styleReport);
         }
 
@@ -203,15 +205,15 @@ public class ReportService {
                 if (checkIfOneDayHasPassed(lastReportTime)) {
                     FarmicaReportDTO farmicaReportDTO = new FarmicaReportDTO();
                     farmicaReportDTO.setTotalItemsInSales(getSalesCount(startOfMonthDateTime, endOfMonthDateTime));
-                    farmicaReportDTO.setTotalItemsInWarehouse(getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime));
+                    farmicaReportDTO
+                            .setTotalItemsInWarehouse(getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime));
                     farmicaReportDTO.setTotalItemsInRework(getReworkCount(startOfMonthDateTime, endOfMonthDateTime));
                     farmicaReportDTO.setTotalItemsInPacking(getZoneCount(startOfMonthDateTime, endOfMonthDateTime));
                     farmicaReportDTO.setTotalItems(
-                        getSalesCount(startOfMonthDateTime, endOfMonthDateTime) +
-                        getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) +
-                        getReworkCount(startOfMonthDateTime, endOfMonthDateTime) +
-                        getZoneCount(startOfMonthDateTime, endOfMonthDateTime)
-                    );
+                            getSalesCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                    getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                    getReworkCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                    getZoneCount(startOfMonthDateTime, endOfMonthDateTime));
                     farmicaReportDTO.setCreatedAt(ZonedDateTime.now());
                     farmicaReportService.save(farmicaReportDTO);
                 } else {
@@ -219,15 +221,15 @@ public class ReportService {
                     lastReport.orElseThrow().setCreatedAt(ZonedDateTime.now());
                     FarmicaReportDTO farmicaReportDTO = farmicaReportMapper.toDto(lastReport.orElseThrow());
                     farmicaReportDTO.setTotalItemsInSales(getSalesCount(startOfMonthDateTime, endOfMonthDateTime));
-                    farmicaReportDTO.setTotalItemsInWarehouse(getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime));
+                    farmicaReportDTO
+                            .setTotalItemsInWarehouse(getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime));
                     farmicaReportDTO.setTotalItemsInRework(getReworkCount(startOfMonthDateTime, endOfMonthDateTime));
                     farmicaReportDTO.setTotalItemsInPacking(getZoneCount(startOfMonthDateTime, endOfMonthDateTime));
                     farmicaReportDTO.setTotalItems(
-                        getSalesCount(startOfMonthDateTime, endOfMonthDateTime) +
-                        getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) +
-                        getReworkCount(startOfMonthDateTime, endOfMonthDateTime) +
-                        getZoneCount(startOfMonthDateTime, endOfMonthDateTime)
-                    );
+                            getSalesCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                    getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                    getReworkCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                    getZoneCount(startOfMonthDateTime, endOfMonthDateTime));
                     farmicaReportService.save(farmicaReportDTO);
                 }
             } else {
@@ -237,11 +239,10 @@ public class ReportService {
                 farmicaReportDTO.setTotalItemsInRework(getReworkCount(startOfMonthDateTime, endOfMonthDateTime));
                 farmicaReportDTO.setTotalItemsInPacking(getZoneCount(startOfMonthDateTime, endOfMonthDateTime));
                 farmicaReportDTO.setTotalItems(
-                    getSalesCount(startOfMonthDateTime, endOfMonthDateTime) +
-                    getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) +
-                    getReworkCount(startOfMonthDateTime, endOfMonthDateTime) +
-                    getZoneCount(startOfMonthDateTime, endOfMonthDateTime)
-                );
+                        getSalesCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                getReworkCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                getZoneCount(startOfMonthDateTime, endOfMonthDateTime));
                 farmicaReportDTO.setCreatedAt(ZonedDateTime.now());
                 farmicaReportService.save(farmicaReportDTO);
             }
@@ -259,27 +260,26 @@ public class ReportService {
             if (lastReport.isPresent()) {
                 FarmicaReportDTO farmicaReportDTO = new FarmicaReportDTO();
                 farmicaReportDTO.setTotalItemsInSales(
-                    getSalesCount(startOfMonthDateTime, endOfMonthDateTime) + lastReport.orElseThrow().getTotalItemsInSales()
-                );
+                        getSalesCount(startOfMonthDateTime, endOfMonthDateTime)
+                                + lastReport.orElseThrow().getTotalItemsInSales());
                 farmicaReportDTO.setTotalItemsInWarehouse(
-                    getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) + lastReport.orElseThrow().getTotalItemsInWarehouse()
-                );
+                        getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime)
+                                + lastReport.orElseThrow().getTotalItemsInWarehouse());
                 farmicaReportDTO.setTotalItemsInRework(
-                    getReworkCount(startOfMonthDateTime, endOfMonthDateTime) + lastReport.orElseThrow().getTotalItemsInRework()
-                );
+                        getReworkCount(startOfMonthDateTime, endOfMonthDateTime)
+                                + lastReport.orElseThrow().getTotalItemsInRework());
                 farmicaReportDTO.setTotalItemsInPacking(
-                    getZoneCount(startOfMonthDateTime, endOfMonthDateTime) + lastReport.orElseThrow().getTotalItemsInPacking()
-                );
+                        getZoneCount(startOfMonthDateTime, endOfMonthDateTime)
+                                + lastReport.orElseThrow().getTotalItemsInPacking());
                 farmicaReportDTO.setTotalItems(
-                    getSalesCount(startOfMonthDateTime, endOfMonthDateTime) +
-                    getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) +
-                    getReworkCount(startOfMonthDateTime, endOfMonthDateTime) +
-                    getZoneCount(startOfMonthDateTime, endOfMonthDateTime) +
-                    lastReport.orElseThrow().getTotalItemsInSales() +
-                    lastReport.orElseThrow().getTotalItemsInWarehouse() +
-                    lastReport.orElseThrow().getTotalItemsInRework() +
-                    lastReport.orElseThrow().getTotalItemsInPacking()
-                );
+                        getSalesCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                getReworkCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                getZoneCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                lastReport.orElseThrow().getTotalItemsInSales() +
+                                lastReport.orElseThrow().getTotalItemsInWarehouse() +
+                                lastReport.orElseThrow().getTotalItemsInRework() +
+                                lastReport.orElseThrow().getTotalItemsInPacking());
                 farmicaReportDTO.setCreatedAt(startOfMonthDateTime);
                 farmicaReportService.save(farmicaReportDTO);
             } else {
@@ -289,11 +289,10 @@ public class ReportService {
                 farmicaReportDTO.setTotalItemsInRework(getReworkCount(startOfMonthDateTime, endOfMonthDateTime));
                 farmicaReportDTO.setTotalItemsInPacking(getZoneCount(startOfMonthDateTime, endOfMonthDateTime));
                 farmicaReportDTO.setTotalItems(
-                    getSalesCount(startOfMonthDateTime, endOfMonthDateTime) +
-                    getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) +
-                    getReworkCount(startOfMonthDateTime, endOfMonthDateTime) +
-                    getZoneCount(startOfMonthDateTime, endOfMonthDateTime)
-                );
+                        getSalesCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                getWarehouseCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                getReworkCount(startOfMonthDateTime, endOfMonthDateTime) +
+                                getZoneCount(startOfMonthDateTime, endOfMonthDateTime));
                 farmicaReportDTO.setCreatedAt(startOfMonthDateTime);
                 // if (farmicaReportDTO.getTotalItemsInSales() < 1 &&
                 // farmicaReportDTO.getTotalItemsInWarehouse() < 1
@@ -327,7 +326,8 @@ public class ReportService {
         List<StyleDTO> styles = styleService.findAll(wholePage).toList();
 
         for (StyleDTO style : styles) {
-            StyleReport styleReport = stylesReportRepo.findStyleReportByMonthAndYear(month, year, style.getId()).orElseThrow();
+            StyleReport styleReport = stylesReportRepo.findStyleReportByMonthAndYear(month, year, style.getId())
+                    .orElseThrow();
             styleReports.add(styleReport);
         }
 
@@ -356,8 +356,8 @@ public class ReportService {
         farmicaReportDTO.setTotalItemsInRework(totalNumberOfCTNsInRework);
         farmicaReportDTO.setTotalItemsInPacking(totalNumberOfCTNsInZone);
         farmicaReportDTO.setTotalItems(
-            totalNumberOfCTNsInSales + totalNumberOfCTNsInWarehouse + totalNumberOfCTNsInRework + totalNumberOfCTNsInZone
-        );
+                totalNumberOfCTNsInSales + totalNumberOfCTNsInWarehouse + totalNumberOfCTNsInRework
+                        + totalNumberOfCTNsInZone);
 
         return farmicaReportDTO;
     }
@@ -378,23 +378,24 @@ public class ReportService {
                 Integer totalNumberOfCTNsInSales = 0;
                 for (WarehouseDetail warehouseDetail : warehouseDetails) {
                     // find all the rework data of this zone
-                    totalNumberOfCTNsInRework =
-                        totalNumberOfCTNsInRework + reworkRepo.findTotalReworkCountByWarehouseDetailId(warehouseDetail.getId());
+                    totalNumberOfCTNsInRework = totalNumberOfCTNsInRework
+                            + reworkRepo.findTotalReworkCountByWarehouseDetailId(warehouseDetail.getId());
                     // find all the sales data of this zone
-                    totalNumberOfCTNsInSales =
-                        totalNumberOfCTNsInRework + salesRepo.findTotalSalesCountByWarehouseDetailId(warehouseDetail.getId());
+                    totalNumberOfCTNsInSales = totalNumberOfCTNsInRework
+                            + salesRepo.findTotalSalesCountByWarehouseDetailId(warehouseDetail.getId());
                 }
 
                 System.err.println("totalNumberOfCTNsInWarehouse " + totalNumberOfCTNsInWarehouse);
                 System.err.println("totalNumberOfCTNsInRework " + totalNumberOfCTNsInRework);
                 System.err.println("totalNumberOfCTNsInSales " + totalNumberOfCTNsInSales);
-
+                totalNumberOfCTNsInWarehouse = totalNumberOfCTNsInWarehouse
+                        - (totalNumberOfCTNsInRework + totalNumberOfCTNsInSales);
                 zoneDetailDTO.setNumberOfCTNsInWarehouse(totalNumberOfCTNsInWarehouse);
                 zoneDetailDTO.setNumberOfCTNsReworked(totalNumberOfCTNsInRework);
                 zoneDetailDTO.setNumberOfCTNsSold(totalNumberOfCTNsInSales);
                 zoneDetailDTO.setNumberOfCTNsPacked(
-                    zoneDetailDTO.getReceivedCTNs() - (totalNumberOfCTNsInWarehouse + totalNumberOfCTNsInRework + totalNumberOfCTNsInSales)
-                );
+                        zoneDetailDTO.getReceivedCTNs() - (totalNumberOfCTNsInWarehouse + totalNumberOfCTNsInRework
+                                + totalNumberOfCTNsInSales));
                 packingZoneDetailService.update(zoneDetailDTO);
                 System.err.println("Updated zone detail " + zoneDetail.getId());
             }
@@ -432,8 +433,8 @@ public class ReportService {
             styleReport.setTotalStyleInRework(totalNumberOfCTNsInRework);
             styleReport.setTotalStyleInPacking(totalNumberOfCTNsInZone);
             styleReport.setTotalStyle(
-                totalNumberOfCTNsInSales + totalNumberOfCTNsInWarehouse + totalNumberOfCTNsInRework + totalNumberOfCTNsInZone
-            );
+                    totalNumberOfCTNsInSales + totalNumberOfCTNsInWarehouse + totalNumberOfCTNsInRework
+                            + totalNumberOfCTNsInZone);
             styleReports.add(styleReport);
         }
 
@@ -452,15 +453,16 @@ public class ReportService {
                     for (StyleDTO style : styles) {
                         StyleReport styleReport = new StyleReport();
                         styleReport.setStyle(styleMapper.toEntity(style));
-                        styleReport.setTotalStyleInSales(getStyleCountForSales(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                        styleReport.setTotalStyleInSales(
+                                getStyleCountForSales(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
                         styleReport.setTotalStyleInWarehouse(
-                            getStyleCountForWarehouse(style.getId(), startOfMonthDateTime, endOfMonthDateTime)
-                        );
-                        styleReport.setTotalStyleInRework(getStyleCountForRework(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                                getStyleCountForWarehouse(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                        styleReport.setTotalStyleInRework(
+                                getStyleCountForRework(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
                         styleReport.setTotalStyleInPacking(
-                            getStyleCountForPacking(style.getId(), startOfMonthDateTime, endOfMonthDateTime)
-                        );
-                        styleReport.setTotalStyle(getTotalStyleCount(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                                getStyleCountForPacking(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                        styleReport.setTotalStyle(
+                                getTotalStyleCount(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
                         styleReport.setCreatedAt(ZonedDateTime.now());
                         stylesReportRepo.save(styleReport);
                     }
@@ -469,18 +471,19 @@ public class ReportService {
                     lastStyleReport.orElseThrow().setCreatedAt(ZonedDateTime.now());
                     for (StyleDTO style : styles) {
                         StyleReport styleReport = stylesReportRepo
-                            .findFirstByStyleOrderByCreatedAtDesc(styleMapper.toEntity(style))
-                            .orElseThrow();
+                                .findFirstByStyleOrderByCreatedAtDesc(styleMapper.toEntity(style))
+                                .orElseThrow();
                         styleReport.setStyle(styleMapper.toEntity(style));
-                        styleReport.setTotalStyleInSales(getStyleCountForSales(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                        styleReport.setTotalStyleInSales(
+                                getStyleCountForSales(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
                         styleReport.setTotalStyleInWarehouse(
-                            getStyleCountForWarehouse(style.getId(), startOfMonthDateTime, endOfMonthDateTime)
-                        );
-                        styleReport.setTotalStyleInRework(getStyleCountForRework(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                                getStyleCountForWarehouse(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                        styleReport.setTotalStyleInRework(
+                                getStyleCountForRework(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
                         styleReport.setTotalStyleInPacking(
-                            getStyleCountForPacking(style.getId(), startOfMonthDateTime, endOfMonthDateTime)
-                        );
-                        styleReport.setTotalStyle(getTotalStyleCount(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                                getStyleCountForPacking(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                        styleReport.setTotalStyle(
+                                getTotalStyleCount(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
                         styleReport.setCreatedAt(ZonedDateTime.now());
                         stylesReportRepo.save(styleReport);
                     }
@@ -489,13 +492,16 @@ public class ReportService {
                 for (StyleDTO style : styles) {
                     StyleReport styleReport = new StyleReport();
                     styleReport.setStyle(styleMapper.toEntity(style));
-                    styleReport.setTotalStyleInSales(getStyleCountForSales(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                    styleReport.setTotalStyleInSales(
+                            getStyleCountForSales(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
                     styleReport.setTotalStyleInWarehouse(
-                        getStyleCountForWarehouse(style.getId(), startOfMonthDateTime, endOfMonthDateTime)
-                    );
-                    styleReport.setTotalStyleInRework(getStyleCountForRework(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
-                    styleReport.setTotalStyleInPacking(getStyleCountForPacking(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
-                    styleReport.setTotalStyle(getTotalStyleCount(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                            getStyleCountForWarehouse(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                    styleReport.setTotalStyleInRework(
+                            getStyleCountForRework(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                    styleReport.setTotalStyleInPacking(
+                            getStyleCountForPacking(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                    styleReport
+                            .setTotalStyle(getTotalStyleCount(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
                     styleReport.setCreatedAt(ZonedDateTime.now());
                     stylesReportRepo.save(styleReport);
                 }
@@ -516,10 +522,14 @@ public class ReportService {
             for (StyleDTO style : styles) {
                 StyleReport styleReport = new StyleReport();
                 styleReport.setStyle(styleMapper.toEntity(style));
-                styleReport.setTotalStyleInSales(getStyleCountForSales(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
-                styleReport.setTotalStyleInWarehouse(getStyleCountForWarehouse(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
-                styleReport.setTotalStyleInRework(getStyleCountForRework(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
-                styleReport.setTotalStyleInPacking(getStyleCountForPacking(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                styleReport.setTotalStyleInSales(
+                        getStyleCountForSales(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                styleReport.setTotalStyleInWarehouse(
+                        getStyleCountForWarehouse(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                styleReport.setTotalStyleInRework(
+                        getStyleCountForRework(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
+                styleReport.setTotalStyleInPacking(
+                        getStyleCountForPacking(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
                 styleReport.setTotalStyle(getTotalStyleCount(style.getId(), startOfMonthDateTime, endOfMonthDateTime));
                 styleReport.setCreatedAt(startOfMonthDateTime);
                 // if (styleReport.getTotalStyleInPacking() < 1 &&
@@ -580,28 +590,24 @@ public class ReportService {
         }
         for (FarmicaReport report : reports) {
             farmicaReport.setTotalItemsInSales(
-                farmicaReport.getTotalItemsInSales() != null
-                    ? (farmicaReport.getTotalItemsInSales() + report.getTotalItemsInSales())
-                    : report.getTotalItemsInSales()
-            );
+                    farmicaReport.getTotalItemsInSales() != null
+                            ? (farmicaReport.getTotalItemsInSales() + report.getTotalItemsInSales())
+                            : report.getTotalItemsInSales());
             farmicaReport.setTotalItemsInWarehouse(
-                farmicaReport.getTotalItemsInWarehouse() != null
-                    ? (farmicaReport.getTotalItemsInWarehouse() + report.getTotalItemsInWarehouse())
-                    : report.getTotalItemsInWarehouse()
-            );
+                    farmicaReport.getTotalItemsInWarehouse() != null
+                            ? (farmicaReport.getTotalItemsInWarehouse() + report.getTotalItemsInWarehouse())
+                            : report.getTotalItemsInWarehouse());
             farmicaReport.setTotalItemsInRework(
-                farmicaReport.getTotalItemsInRework() != null
-                    ? (farmicaReport.getTotalItemsInRework() + report.getTotalItemsInRework())
-                    : report.getTotalItemsInRework()
-            );
+                    farmicaReport.getTotalItemsInRework() != null
+                            ? (farmicaReport.getTotalItemsInRework() + report.getTotalItemsInRework())
+                            : report.getTotalItemsInRework());
             farmicaReport.setTotalItemsInPacking(
-                farmicaReport.getTotalItemsInPacking() != null
-                    ? (farmicaReport.getTotalItemsInPacking() + report.getTotalItemsInPacking())
-                    : report.getTotalItemsInPacking()
-            );
+                    farmicaReport.getTotalItemsInPacking() != null
+                            ? (farmicaReport.getTotalItemsInPacking() + report.getTotalItemsInPacking())
+                            : report.getTotalItemsInPacking());
             farmicaReport.setTotalItems(
-                farmicaReport.getTotalItems() != null ? (farmicaReport.getTotalItems() + report.getTotalItems()) : report.getTotalItems()
-            );
+                    farmicaReport.getTotalItems() != null ? (farmicaReport.getTotalItems() + report.getTotalItems())
+                            : report.getTotalItems());
 
             farmicaReport.setCreatedAt(report.getCreatedAt());
         }
@@ -616,7 +622,8 @@ public class ReportService {
         List<StyleDTO> styles = styleService.findAll(wholePage).toList();
 
         for (StyleDTO style : styles) {
-            List<StyleReport> styleReportList = stylesReportRepo.findStyleReportByDates(startDate, endDate, style.getId());
+            List<StyleReport> styleReportList = stylesReportRepo.findStyleReportByDates(startDate, endDate,
+                    style.getId());
             StyleReport styleReport = new StyleReport();
             if (styleReportList.size() == 0) {
                 continue;
@@ -624,30 +631,25 @@ public class ReportService {
             for (StyleReport styleReportItem : styleReportList) {
                 System.err.println(styleReportItem);
                 styleReport.setTotalStyleInSales(
-                    styleReport.getTotalStyleInSales() != null
-                        ? (styleReportItem.getTotalStyleInSales() + styleReport.getTotalStyleInSales())
-                        : styleReportItem.getTotalStyleInSales()
-                );
+                        styleReport.getTotalStyleInSales() != null
+                                ? (styleReportItem.getTotalStyleInSales() + styleReport.getTotalStyleInSales())
+                                : styleReportItem.getTotalStyleInSales());
                 styleReport.setTotalStyleInWarehouse(
-                    styleReport.getTotalStyleInWarehouse() != null
-                        ? (styleReportItem.getTotalStyleInWarehouse() + styleReport.getTotalStyleInWarehouse())
-                        : styleReportItem.getTotalStyleInWarehouse()
-                );
+                        styleReport.getTotalStyleInWarehouse() != null
+                                ? (styleReportItem.getTotalStyleInWarehouse() + styleReport.getTotalStyleInWarehouse())
+                                : styleReportItem.getTotalStyleInWarehouse());
                 styleReport.setTotalStyleInRework(
-                    styleReport.getTotalStyleInRework() != null
-                        ? (styleReportItem.getTotalStyleInRework() + styleReport.getTotalStyleInRework())
-                        : styleReportItem.getTotalStyleInRework()
-                );
+                        styleReport.getTotalStyleInRework() != null
+                                ? (styleReportItem.getTotalStyleInRework() + styleReport.getTotalStyleInRework())
+                                : styleReportItem.getTotalStyleInRework());
                 styleReport.setTotalStyleInPacking(
-                    styleReport.getTotalStyleInPacking() != null
-                        ? (styleReportItem.getTotalStyleInPacking() + styleReport.getTotalStyleInPacking())
-                        : styleReportItem.getTotalStyleInPacking()
-                );
+                        styleReport.getTotalStyleInPacking() != null
+                                ? (styleReportItem.getTotalStyleInPacking() + styleReport.getTotalStyleInPacking())
+                                : styleReportItem.getTotalStyleInPacking());
                 styleReport.setTotalStyle(
-                    styleReport.getTotalStyle() != null
-                        ? (styleReportItem.getTotalStyle() + styleReport.getTotalStyle())
-                        : styleReportItem.getTotalStyle()
-                );
+                        styleReport.getTotalStyle() != null
+                                ? (styleReportItem.getTotalStyle() + styleReport.getTotalStyle())
+                                : styleReportItem.getTotalStyle());
                 styleReport.setStyle(styleReportItem.getStyle());
                 styleReport.setCreatedAt(styleReportItem.getCreatedAt());
             }
