@@ -39,7 +39,7 @@ public interface WarehouseRepo extends JpaRepository<WarehouseDetail, Long> {
         List<WarehouseDetail> totalWarehouseDetails = findAllByZoneDetailId(zoneDetailId);
         Integer totalWarehouseCount = 0;
         for (WarehouseDetail warehouseDetail : totalWarehouseDetails) {
-            totalWarehouseCount += warehouseDetail.getNumberOfCTNs();
+            totalWarehouseCount = totalWarehouseCount + warehouseDetail.getReceivedCTNs();
         }
         return totalWarehouseCount;
     }

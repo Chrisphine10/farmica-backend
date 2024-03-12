@@ -49,7 +49,7 @@ public interface SalesRepo extends JpaRepository<SalesDetail, Long> {
         List<SalesDetail> totalSalesDetails = this.findAllByZoneDetailId(warehouseId);
         Integer totalSalesCount = 0;
         for (SalesDetail salesDetail : totalSalesDetails) {
-            totalSalesCount += salesDetail.getNumberOfCTNs();
+            totalSalesCount = totalSalesCount + salesDetail.getNumberOfCTNs();
         }
         return totalSalesCount;
     }
