@@ -16,6 +16,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -23,6 +24,7 @@ import org.springframework.scheduling.config.ScheduledTask;
 import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
 
+@EnableCaching
 @SpringBootApplication
 @EnableJpaRepositories("com.bhachu.farmica.custom.repository")
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
